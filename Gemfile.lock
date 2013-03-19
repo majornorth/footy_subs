@@ -45,7 +45,7 @@ GEM
     coffee-script (2.2.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.6.1)
+    coffee-script-source (1.6.2)
     diff-lcs (1.2.1)
     erubis (2.7.0)
     execjs (1.4.0)
@@ -64,7 +64,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.21)
     multi_json (1.7.1)
-    nokogiri (1.5.7)
+    nokogiri (1.5.8)
     pg (0.14.1)
     polyglot (0.3.3)
     rack (1.4.5)
