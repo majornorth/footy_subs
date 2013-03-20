@@ -1,4 +1,12 @@
 FootySubs::Application.routes.draw do
+  get "static_pages/games"
+
+  get "static_pages/details"
+
+  get "static_pages/post"
+
+  get "static_pages/signup"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
