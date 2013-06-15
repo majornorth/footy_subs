@@ -1,0 +1,18 @@
+<h1>Users</h1>
+
+<% if signed_in? %>
+	<%= link_to "Profile", current_user %> <%= link_to "Sign out", signout_path, method: "delete" %>
+<% else %>
+	<%= link_to "Sign in", signin_path %> or <%= link_to "Sign up", new_user_path %>
+<% end %> 
+
+<br />
+
+<ul>
+	<% @users.each do |u| %>
+		<li><%= u.firstName %> <%= u.lastName %> <%= link_to "edit",edit_user_path(u.id) %> <%= link_to "delete", user_path(u.id), :method => "DELETE" %></li>
+		<li><%= u.email %></li>
+		<li><%= u.mobile %></li>
+		<br />
+	<% end %>
+</ul>

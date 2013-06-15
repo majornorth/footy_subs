@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-FootySubs::Application.load_tasks
+Pickup::Application.load_tasks
