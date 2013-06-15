@@ -1,14 +1,14 @@
-<h1>Pickups</h1>
+<h1>Footy Subs</h1>
 
 <% if signed_in? %>
 <p>	
 	<%= link_to "Profile", current_user %> | <%= link_to "Sign out", signout_path, method: "delete" %>
 </p>
 <p>
-	<%= link_to "create pickup", new_event_path %>
+	<%= link_to "Post match", new_event_path %>
 </p>
 <% else %>
-	<%= link_to "Sign in", signin_path %> or <%= link_to "Sign up", new_user_path %> to join or create pickups
+	<%= link_to "Sign in", signin_path %> or <%= link_to "Sign up", new_user_path %> to join or post match
 <% end %> 
 
 <ul>
