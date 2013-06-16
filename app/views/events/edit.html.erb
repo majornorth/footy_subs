@@ -1,8 +1,23 @@
-<h1>Edit pickup</h1>
+<h1>Edit match</h1>
 
 <%= form_for @event do |f| %>
 
-	<%= select(:activity, :name, Activity.all.collect { |a| [ a.name, a.name ] }, {:include_blank => 'Select Sport', :selected => @event.sport}) %>
+	<%= f.label :needed, 'Needed' %>:
+	<%= select_tag "needed", "<option>1</option>
+	<option>2</option>
+	<option>3</option>
+	<option>4</option>
+	<option>5</option>
+	<option>6</option>
+	<option>7</option>
+	<option>8</option>
+	<option>9</option>
+	<option>10</option>
+	<option>11</option>
+	<option>12</option>
+	<option>13</option>
+	<option>14</option>".html_safe, :selected => @event.needed %>
+	<br />
 
 	<%= f.label :start, 'Starts' %>:
 	<%= datetime_select("event", "start", :order => [:month, :day], :use_short_month => true, :ampm => true, :minute_step => 15, :datetime_separator => 'at ') %>
@@ -12,6 +27,6 @@
 	<%= f.text_field :location %>
 	<br />
 
-	<%= f.submit %> <%= link_to "Cancel", event_path %>
+	<%= f.submit(value = "Submit") %> <%= link_to "Cancel", event_path %>
 
 <% end %>

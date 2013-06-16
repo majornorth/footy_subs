@@ -13,10 +13,9 @@
 
 <ul>
 	<% @events.each do |e| %>
-		<li><%= link_to(event_path(e.id)) do %><%= e.sport %><% end %></li>
-		<li><%= e.users.count %> joined</li>
-		<li><%= e.start.strftime("%A, %b %e at %l:%M%P") %></li>
+		<li><%= link_to(event_path(e.id)) do %><%= e.start.strftime("%A, %b %e at %l:%M%P") %><% end %></li>
 		<li><%= e.location %></li>
+		<li><%= e.users.count %> / <%= e.needed %></li>
 		<br />
 	<% end %>
 </ul>

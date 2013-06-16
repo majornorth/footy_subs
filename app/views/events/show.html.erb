@@ -1,23 +1,12 @@
 <%= link_to "Back to Events", root_path %>
 
-<h1><%= @event.sport %> (<%= @event.users.count %> joined)</h1>
+<h1><%= @event.needed %> needed</h1>
 
 <% if current_user.id == @event.organizer %>
+	<p>
 	<%= link_to "edit", edit_event_path %> <%= link_to "delete", event_path, :method => "DELETE" %>
+	</p>
 <% end %>
-
-<ul>
-	<li><%= @event.location %></li>
-	<li><%= @event.start.strftime("%A, %b %e at %l:%M%P") %></li>
-</ul>
-
-<h2>Joined:</h2>
-
-<ul>
-	<% @event.users.each do |u| %>
-		<li><%= u.firstName %> <%= u.lastName %></li>
-	<% end %>
-</ul>
 
 	<% if signed_in? %>
 
@@ -37,8 +26,21 @@
 
 	<% end %>
 
+<ul>
+	<li><%= @event.location %></li>
+	<li><%= @event.start.strftime("%A, %b %e at %l:%M%P") %></li>
+</ul>
+
+<h2>Subs:</h2>
+
+<ul>
+	<% @event.users.each do |u| %>
+		<li><%= u.firstName %> <%= u.lastName %></li>
+	<% end %>
+</ul>
+
 	<% if ! signed_in? %>
-		<%= link_to "Sign in", signin_path %> or <%= link_to "Sign up", new_user_path %> to join pickup
+		<%= link_to "Sign in", signin_path %> or <%= link_to "Sign up", new_user_path %> to join as a sub
 	<% end %>
 
 

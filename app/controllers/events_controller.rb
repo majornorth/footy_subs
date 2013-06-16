@@ -45,7 +45,7 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-    @event.sport = params[:activity][:name]
+    @event.needed = params[:needed]
     @event.update_attributes(params[:event])
     redirect_to event_path
   end
