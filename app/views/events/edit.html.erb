@@ -3,20 +3,22 @@
 <%= form_for @event do |f| %>
 
 	<%= f.label :needed, 'Needed' %>:
-	<%= select_tag "needed", "<option>1</option>
-	<option>2</option>
-	<option>3</option>
-	<option>4</option>
-	<option>5</option>
-	<option>6</option>
-	<option>7</option>
-	<option>8</option>
-	<option>9</option>
-	<option>10</option>
-	<option>11</option>
-	<option>12</option>
-	<option>13</option>
-	<option>14</option>".html_safe, :selected => @event.needed %>
+	<%= f.select :needed, options_for_select([
+		["1", "1"],
+		["2", "2"],
+		["3", "3"],
+		["4", "4"],
+		["5", "5"],
+		["6", "6"],
+		["7", "7"],
+		["8", "8"],
+		["9", "9"],
+		["10", "10"],
+		["11", "11"],
+		["12", "12"],
+		["13", "13"],
+		["14", "14"],
+		], @event.needed) %>
 	<br />
 
 	<%= f.label :start, 'Starts' %>:
@@ -24,7 +26,49 @@
 	<br />
 
 	<%= f.label :location, 'Location' %>:
-	<%= f.text_field :location %>
+	<%= f.select :location, options_for_select([
+		["Balboa High School", "Balboa High School"],
+		["Beach Chalet", "Beach Chalet"],
+		["Crocker Amazon", "Crocker Amazon"],
+		["Franklin Square Playfield", "Franklin Square Playfield"],
+		["Kezar Stadium", "Kezar Stadium"],
+		["Kimbell Playground", "Kimbell Playground"],
+		["Pollicita Middle School", "Pollicita Middle School"],
+		["Polo Fields", "Polo Fields"],
+		["Silver Terrace Playground", "Silver Terrace Playground"],
+		], @event.location) %>
+	<br />
+
+	<%= f.label :league, 'League' %>:
+	<%= f.select :league, options_for_select([
+		["iPlayFor", "iPlayFor"],
+		["Golden Gate Women's", "Golden Gate Women's"],
+		["SF Soccer Football", "SF Soccer Football"],
+		["Sports4Good", "Sports4Good"],
+		["SF Co-ed Rec Soccer", "SF Co-ed Rec Soccer"],
+		["NorCal Athletics", "NorCal Athletics"],
+		], @event.league) %>
+	<br />
+
+	<%= f.label :skill_level, 'Skill' %>:
+	<%= f.select :skill_level, options_for_select([
+		["Beginner", "Beginner"],
+		["Recreational", "Recreational"],
+		["Intermediate", "Intermediate"],
+		["Competitive", "Competitive"],
+		], @event.skill_level) %>
+	<br />
+
+	<%= f.label :field_type, 'Field' %>:
+	<%= f.select :field_type, options_for_select([
+		["Grass", "Grass"],
+		["Turf", "Turf"],
+		["Hardcourt", "Hardcourt"],
+		], @event.field_type) %>
+	<br />
+
+	<%= f.label :note, 'Notes' %> (Max 140 characters):<br />
+	<%= f.text_area :note, :cols => 40, :rows => 5 %>
 	<br />
 
 	<%= f.submit(value = "Submit") %> <%= link_to "Cancel", event_path %>

@@ -10,19 +10,11 @@
 	</p>
 <% end %>
 
-<h2>Favorite Activities</h2>
-	<ul>
-		<% User.find(current_user.id).activities.each do |a| %>
-			<li><%= a.name %></li>
-		<% end %>
-	</ul>
-
-<h2>Attending Pickups</h2>
+<h2>Matches</h2>
 	<ul>
 		<% User.find(current_user.id).events.each do |e| %>
-			<li><%= link_to(event_path(e.id)) do %><%= e.sport %><% end %></li>
+			<li><%= link_to(event_path(e.id)) do %><%= e.start.strftime("%A, %b %e at %l:%M%P") %><% end %></li>
 			<li><%= e.users.count %> joined</li>
-			<li><%= e.start.to_formatted_s(:long_ordinal) %></li>
 			<li><%= e.location %></li>
 			<br />
 		<% end %>
