@@ -1,6 +1,6 @@
 Pickup::Application.routes.draw do
 
-  resources :events, :activities, :users
+  resources :events, :users
   resources :sessions, only: [:new, :create, :destroy]
   root :to => "events#index"
 

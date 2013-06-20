@@ -2,7 +2,7 @@
 
 <% if signed_in? %>
 <p>	
-	<%= link_to "Profile", current_user %> | <%= link_to "Sign out", signout_path, method: "delete" %>
+	<%= link_to "Profile", current_user %>
 </p>
 <p>
 	<%= link_to "Post match", new_event_path %>
@@ -13,9 +13,17 @@
 
 <ul>
 	<% @events.each do |e| %>
-		<li><%= link_to(event_path(e.id)) do %><%= e.start.strftime("%A, %b %e at %l:%M%P") %><% end %></li>
+		<li><%= link_to(event_path(e.id)) do %><%= e.start.strftime("%a, %b %e at %l:%M%P") %><% end %></li>
 		<li><%= e.location %></li>
-		<li><%= e.users.count %> / <%= e.needed %></li>
+		
+		<% if e.start < DateTime.current %>
+			<li>Ended</li>
+		<% elsif e.start > DateTime.current && e.users.count == e.needed %>
+			<li>Full</li>
+		<% else %>
+			<li><%= e.users.count %> / <%= e.needed %></li>
+		<% end %>
+		
 		<br />
 	<% end %>
 </ul>

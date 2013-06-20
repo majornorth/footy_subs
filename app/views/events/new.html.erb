@@ -1,7 +1,7 @@
 <h1>Post Match</h1>
 
 <%= form_for @event do |f| %>
-	
+
 	<%= f.hidden_field :organizer, :value => current_user.id %>
 
 	<%= f.label :needed, 'Needed' %>:
