@@ -26,7 +26,49 @@
 	<br />
 
 	<%= f.label :location, 'Location' %>:
-	<%= f.text_field :location %>
+	<%= f.select :location, options_for_select([
+		["Balboa High School", "Balboa High School"],
+		["Beach Chalet", "Beach Chalet"],
+		["Crocker Amazon", "Crocker Amazon"],
+		["Franklin Square Playfield", "Franklin Square Playfield"],
+		["Kezar Stadium", "Kezar Stadium"],
+		["Kimbell Playground", "Kimbell Playground"],
+		["Pollicita Middle School", "Pollicita Middle School"],
+		["Polo Fields", "Polo Fields"],
+		["Silver Terrace Playground", "Silver Terrace Playground"],
+		]) %>
+	<br />
+
+	<%= f.label :league, 'League' %>:
+	<%= f.select :league, options_for_select([
+		["iPlayFor", "iPlayFor"],
+		["Golden Gate Women's", "Golden Gate Women's"],
+		["SF Soccer Football", "SF Soccer Football"],
+		["Sports4Good", "Sports4Good"],
+		["SF Co-ed Rec Soccer", "SF Co-ed Rec Soccer"],
+		["NorCal Athletics", "NorCal Athletics"],
+		]) %>
+	<br />
+
+		<%= f.label :skill_level, 'Skill' %>:
+	<%= f.select :skill_level, options_for_select([
+		["Beginner", "Beginner"],
+		["Recreational", "Recreational"],
+		["Intermediate", "Intermediate"],
+		["Competitive", "Competitive"],
+		]) %>
+	<br />
+
+	<%= f.label :field_type, 'Field' %>:
+	<%= f.select :field_type, options_for_select([
+		["Grass", "Grass"],
+		["Turf", "Turf"],
+		["Hardcourt", "Hardcourt"],
+		]) %>
+	<br />
+
+	<%= f.label :note, 'Notes' %> (Max 140 characters):<br />
+	<%= f.text_area :note, :cols => 40, :rows => 5 %>
 	<br />
 
 	<%= f.submit(value = "Submit") %> <%= link_to "Cancel", events_path %>

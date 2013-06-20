@@ -16,9 +16,10 @@
 		<li><%= link_to(event_path(e.id)) do %><%= e.start.strftime("%a, %b %e at %l:%M%P") %><% end %></li>
 		<li><%= e.location %></li>
 		
-		<% if e.start < DateTime.current %>
+		<%# Need to adjust Time.now from UTC to PDT %> 
+		<% if e.start < Time.now %>
 			<li>Ended</li>
-		<% elsif e.start > DateTime.current && e.users.count == e.needed %>
+		<% elsif e.start > Time.now && e.users.count == e.needed %>
 			<li>Full</li>
 		<% else %>
 			<li><%= e.users.count %> / <%= e.needed %></li>
