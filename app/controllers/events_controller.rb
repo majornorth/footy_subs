@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.order("created_at DESC")
+    @events = Event.order("start DESC")
   end
 
   def new
@@ -35,12 +35,24 @@ class EventsController < ApplicationController
   end
 
   def join
-    @event = Event.find(params[:event][:event_id]).users << current_user
+    @add_user = Event.find(params[:event][:event_id]).users << current_user
+    @attendees = Event.find(params[:event][:event_id]).users.count
+    @needed = Event.find(params[:event][:event_id]).needed
+    @event = Event.find(params[:event][:event_id])
+    if @attendees == @needed
+      @event.update_attributes(:status => "full")
+    end
     redirect_to :back
   end
 
   def leave
     @event = Event.find(params[:event][:event_id]).users.delete(current_user)
+    @attendees = Event.find(params[:event][:event_id]).users.count
+    @needed = Event.find(params[:event][:event_id]).needed
+    @event = Event.find(params[:event][:event_id])
+    if @attendees < @needed
+      @event.update_attributes(:status => "open")
+    end
     redirect_to :back
   end
 end

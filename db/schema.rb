@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130615234641) do
+ActiveRecord::Schema.define(:version => 20130620222728) do
 
   create_table "events", :force => true do |t|
     t.datetime "start"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20130615234641) do
     t.string   "field_type"
     t.string   "skill_level"
     t.text     "note"
+    t.string   "status"
   end
 
   create_table "events_users", :id => false, :force => true do |t|

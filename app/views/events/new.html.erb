@@ -4,6 +4,8 @@
 
 	<%= f.hidden_field :organizer, :value => current_user.id %>
 
+	<%= f.hidden_field :status, :value => "open" %>
+
 	<%= f.label :needed, 'Needed' %>:
 	<%= select_tag "needed", "<option>1</option>
 	<option>2</option>
