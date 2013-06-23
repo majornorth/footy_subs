@@ -19,13 +19,11 @@
 			<br />
 	<% end %>
 
-	<% @events.each do |e| %>
-		<% if e.status == "full" %>
+	<% @full.each do |e| %>
 			<li><%= link_to(event_path(e.id)) do %><%= e.start.strftime("%a, %b %e at %l:%M%P") %><% end %></li>
 			<li><%= e.location %></li>
 			<li>Full</li>
 			<br />
-		<% end %>
 	<% end %>
 
 	<% @events.each do |e| %>
