@@ -32,15 +32,25 @@
 	<li><strong>League:</strong> <%= @event.league %></li>
 	<li><strong>Skill:</strong> <%= @event.skill_level %></li>
 	<li><strong>Field:</strong> <%= @event.field_type %></li>
-	<li><strong>Note:</strong> <%= @event.note %></li>
+	<% unless @event.note.empty? %>
+		<li><strong>Note:</strong> <%= @event.note %></li>
+	<% end %>
 </ul>
 
 <h2>Subs:</h2>
 
 <ul>
 	<% @event.users.each do |u| %>
-		<li><%= u.firstName %> <%= u.lastName %></li>
+		<% if u.id == current_user.id %>
+			<li>You</li>
+		<% else %>
+			<li><%= u.firstName %> <%= u.lastName %></li>
+		<% end %>
 	<% end %>
+
+	<% if @event.users.empty? %>
+		Join this match and be the first sub!
+	<% end %> 
 </ul>
 
 	<% if ! signed_in? %>
