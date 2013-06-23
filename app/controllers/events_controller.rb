@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   def index
     @events = Event.order("start DESC")
+    @open = Event.where(:status => "open").order("start ASC")
   end
 
   def new
