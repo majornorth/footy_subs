@@ -10,12 +10,3 @@
 	</p>
 <% end %>
 
-<h2>Matches</h2>
-	<ul>
-		<% User.find(current_user.id).events.each do |e| %>
-			<li><%= link_to(event_path(e.id)) do %><%= e.start.strftime("%a, %b %e at %l:%M%P") %><% end %></li>
-			<li><%= e.location %></li>
-			<li><%= e.users.count %>/<%=e.needed %></li>
-			<br />
-		<% end %>
-	</ul>

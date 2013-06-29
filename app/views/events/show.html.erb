@@ -1,14 +1,22 @@
 <%= link_to "Back to Events", root_path %>
 
-<h1><%= @event.needed %> needed</h1>
+<h1>
+	<% if @event.status == "full" && @event.start > Time.now %>
+		Game full
+	<% elsif @event.start < Time.now %>
+		Game ended
+	<% else %> 
+		<%= @event.needed %> needed
+	<% end %>
+</h1>
 
-<% if current_user.id == @event.organizer %>
+<% if signed_in? && current_user.id == @event.organizer %>
 	<p>
 	<%= link_to "edit", edit_event_path %> <%= link_to "delete", event_path, :method => "DELETE" %>
 	</p>
 <% end %>
 
-	<% if signed_in? %>
+	<% if signed_in? && current_user.id != @event.organizer && @event.start > Time.now %>
 
 		<% if @event.users.select { |u| u.id == current_user.id }.empty? == true %>
 			<%= form_for @event, :url => join_path do |f| %>
@@ -39,22 +47,41 @@
 
 <h2>Subs:</h2>
 
-<ul>
-	<% @event.users.each do |u| %>
-		<% if u.id == current_user.id %>
-			<li>You</li>
-		<% else %>
-			<li><%= u.firstName %> <%= u.lastName %></li>
+<% if signed_in? %>
+	<ul>
+		<% @event.users.each do |u| %>
+			<% if u.id == current_user.id %>
+				You
+			<% else %>
+				<li><%= u.firstName %> <%= u.lastName %></li>
+			<% end %>
 		<% end %>
-	<% end %>
 
-	<% if @event.users.empty? %>
+		<% if @event.users.empty? && @event.start > Time.now && current_user.id != @event.organizer %>
+			Join this match and be the first sub!
+		<% elsif @event.users.empty? && @event.start > Time.now && current_user.id == @event.organizer %>
+			Still waiting for subs to join this match.
+		<% elsif @event.users.empty? && @event.start < Time.now %>
+			Nobody joined this match.
+		<% end %> 
+	</ul>
+
+<% elsif ! signed_in? %>
+	<ul>
+		<% @event.users.each do |u| %>
+				<li><%= u.firstName %> <%= u.lastName %></li>
+		<% end %>
+	</ul>
+
+	<% if @event.users.empty? && @event.start > Time.now %>
 		Join this match and be the first sub!
+	<% elsif @event.users.empty? && @event.start < Time.now %>
+		Nobody joined this match.
 	<% end %> 
-</ul>
+<% end %>
 
-	<% if ! signed_in? %>
-		<%= link_to "Sign in", signin_path %> or <%= link_to "Sign up", new_user_path %> to join as a sub
+	<% if ! signed_in? && @event.start > Time.now %>
+		Want to play in this match? <%= link_to "Sign in", signin_path %> or <%= link_to "Sign up", new_user_path %> to join as a sub.
 	<% end %>
 
 

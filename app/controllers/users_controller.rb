@@ -34,15 +34,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-  end
-
-  def addFavorite
-    Activity.find(params[:user][:activity_id]).users << current_user
-    redirect_to :back
-  end
-
-  def removeFavorite
-    Activity.find(params[:user][:activity_id]).users.delete(current_user)
-    redirect_to :back
+    @events = Event.order("start DESC")
+    @open = Event.where(:status => "open").order("start ASC")
+    @full = Event.where(:status => "full").order("start ASC")
   end
 end
