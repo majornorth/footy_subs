@@ -7,20 +7,22 @@
 	<%= f.hidden_field :status, :value => "open" %>
 
 	<%= f.label :needed, 'Needed' %>:
-	<%= select_tag "needed", "<option>1</option>
-	<option>2</option>
-	<option>3</option>
-	<option>4</option>
-	<option>5</option>
-	<option>6</option>
-	<option>7</option>
-	<option>8</option>
-	<option>9</option>
-	<option>10</option>
-	<option>11</option>
-	<option>12</option>
-	<option>13</option>
-	<option>14</option>".html_safe %>
+	<%= f.select :needed, options_for_select([
+		["1", "1"],
+		["2", "2"],
+		["3", "3"],
+		["4", "4"],
+		["5", "5"],
+		["6", "6"],
+		["7", "7"],
+		["8", "8"],
+		["9", "9"],
+		["10", "10"],
+		["11", "11"],
+		["12", "12"],
+		["13", "13"],
+		["14", "14"],
+		], @event.needed) %>
 	<br />
 
 	<%= f.label :start, 'Starts' %>:

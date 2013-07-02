@@ -35,6 +35,7 @@ class EventsController < ApplicationController
 
   def destroy
     Event.find(params[:id]).destroy
+    # need to destroy events_users joins
     redirect_to events_path
   end
 

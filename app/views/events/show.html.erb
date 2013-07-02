@@ -18,7 +18,7 @@
 
 	<% if signed_in? && current_user.id != @event.organizer && @event.start > Time.now %>
 
-		<% if @event.users.select { |u| u.id == current_user.id }.empty? == true %>
+		<% if @event.users.select { |u| u.id == current_user.id }.empty? == true && @event.status != "full" %>
 			<%= form_for @event, :url => join_path do |f| %>
 				<%= f.hidden_field :event_id, :value => @event.id %>
 				<%= f.submit('Join') %>
