@@ -15,20 +15,11 @@
 
 	<% if signed_in? %>
 
-		<% @open.each do |e| %>
-			<% if e.users.include?(current_user) %>
+		<% @joined.each do |e| %>
+			<% if e.status == "open" && e.users.include?(current_user) || e.status == "full" && e.users.include?(current_user) %>
 				<li><%= link_to(event_path(e.id)) do %><%= e.start.strftime("%a, %b %e at %l:%M%P") %><% end %></li>
 				<li><%= e.location %></li>
-				<li>Joined / Open</li>
-				<br />
-			<% end %>
-		<% end %>
-
-		<% @full.each do |e| %>
-			<% if e.users.include?(current_user) %>
-				<li><%= link_to(event_path(e.id)) do %><%= e.start.strftime("%a, %b %e at %l:%M%P") %><% end %></li>
-				<li><%= e.location %></li>
-				<li>Joined / Full</li>
+				<li>Joined</li>
 				<br />
 			<% end %>
 		<% end %>
