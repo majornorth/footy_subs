@@ -3,6 +3,7 @@ class EventsController < ApplicationController
     @events = Event.order("start DESC")
     @open = Event.where(:status => "open").order("start ASC")
     @full = Event.where(:status => "full").order("start ASC")
+    @ended = Event.where(:status => "ended").order("start DESC")
     @all_events = Event.find(:all)
     @all_events.each do |e|
       if e.start < Time.now
