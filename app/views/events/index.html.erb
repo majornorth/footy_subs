@@ -1,79 +1,87 @@
-<h1>Footy Subs</h1>
-
-<% if signed_in? %>
-<p>	
-	<%= link_to "Profile", current_user %>
-</p>
-<p>
-	<%= link_to "Post match", new_event_path %>
-</p>
-<% else %>
-	<%= link_to "Sign in", signin_path %> or <%= link_to "Sign up", new_user_path %> to join or post match
-<% end %> 
-
-<ul>
-
+<header class="bar-title">
 	<% if signed_in? %>
+		<%= link_to "Profile", current_user, class: "button" %>
+	<% else %>
+		<%= link_to "Sign up", new_user_path, class: "button" %>
+	<% end %> 
 
-		<% @joined.each do |e| %>
-			<% if e.status == "open" && e.users.include?(current_user) || e.status == "full" && e.users.include?(current_user) %>
-				<li><%= link_to(event_path(e.id)) do %><%= e.start.strftime("%a, %b %e at %l:%M%P") %><% end %></li>
-				<li><%= e.location %></li>
-				<li>Joined</li>
-				<br />
+	<h1 class="title">
+		<span style="display: none;">Footy Subs</span>
+		<img src="/assets/footy-subs.png" style="margin-top: 7px;" width="97px" height="35px">
+	</h1>
+	<%= link_to "Post", new_event_path, class: "button" %> 
+</header>
+
+<div class="content">
+
+		<ul class="list">
+
+		<% if signed_in? %>
+
+			<% @joined.each do |e| %>
+				<% if e.status == "open" && e.users.include?(current_user) || e.status == "full" && e.users.include?(current_user) %>
+					<li><%= link_to(event_path(e.id)) do %><strong><%= e.start.strftime("%a, %b %e at %l:%M%P") %></strong>
+					<span class="count">Joined</span>
+					<p><%= e.location %></p><% end %>
+					</li>
+				<% end %>
 			<% end %>
-		<% end %>
 
-		<% @open.each do |e| %>
-			<% if e.users.exclude?(current_user) %>
-				<li><%= link_to(event_path(e.id)) do %><%= e.start.strftime("%a, %b %e at %l:%M%P") %><% end %></li>
-				<li><%= e.location %></li>
-				<li><%= e.users.count %> / <%= e.needed %></li>
-				<br />
+			<% @open.each do |e| %>
+				<% if e.users.exclude?(current_user) %>
+				<div class="lastOpen">
+					<li><%= link_to(event_path(e.id)) do %><strong><%= e.start.strftime("%a, %b %e at %l:%M%P") %></strong>
+					<span class="count"><%= e.users.count %> / <%= e.needed %></span>
+					<p><%= e.location %></p><% end %>
+					</li>
+				</div>
+				<% end %>
 			<% end %>
-		<% end %>
 
-		<% @full.each do |e| %>
-			<% if e.users.exclude?(current_user) %>
-				<li><%= link_to(event_path(e.id)) do %><%= e.start.strftime("%a, %b %e at %l:%M%P") %><% end %></li>
-				<li><%= e.location %></li>
-				<li>Full</li>
-				<br />
+			<% @full.each do |e| %>
+				<% if e.users.exclude?(current_user) %>
+					<li class="expired"><%= link_to(event_path(e.id)) do %><strong><%= e.start.strftime("%a, %b %e at %l:%M%P") %></strong>
+					<span class="count">Full</span>
+					<p><%= e.location %></p><% end %>
+					</li>
+				<% end %>
 			<% end %>
+
+
+			<% @ended.limit(15).each do |e| %>
+					<li class="expired"><%= link_to(event_path(e.id)) do %><strong><%= e.start.strftime("%a, %b %e at %l:%M%P") %></strong>
+					<span class="count">Ended</span>
+					<p><%= e.location %></p><% end %>
+					</li>
+			<% end %>
+
 		<% end %>
 
-		<% @ended.each do |e| %>
-				<li><%= link_to(event_path(e.id)) do %><%= e.start.strftime("%a, %b %e at %l:%M%P") %><% end %></li>
-				<li><%= e.location %></li>
-				<li>Ended</li>
-				<br />
+		<% if ! signed_in? %>
+			
+			<% @open.each do |e| %>
+					<li><%= link_to(event_path(e.id)) do %><strong><%= e.start.strftime("%a, %b %e at %l:%M%P") %></strong>
+					<span class="count"><%= e.users.count %> / <%= e.needed %></span>
+					<p><%= e.location %></p><% end %>
+					</li>
+			<% end %>
+
+			<% @full.each do |e| %>
+				<%= link_to(event_path(e.id)) do %><strong><%= e.start.strftime("%a, %b %e at %l:%M%P") %></strong>
+				<span class="count">Full</span>
+				<p><%= e.location %></p><% end %>
+				</li>
+			<% end %>
+
+			<% @ended.limit(15).each do |e| %>
+					<li><%= link_to(event_path(e.id)) do %><strong><%= e.start.strftime("%a, %b %e at %l:%M%P") %></strong>
+					<span class="count">Ended</span>
+					<p><%= e.location %></p><% end %>
+					</li>
+			<% end %>
+
 		<% end %>
 
-	<% end %>
+		</ul>
 
-	<% if ! signed_in? %>
-		
-		<% @open.each do |e| %>
-				<li><%= link_to(event_path(e.id)) do %><%= e.start.strftime("%a, %b %e at %l:%M%P") %><% end %></li>
-				<li><%= e.location %></li>
-				<li><%= e.users.count %> / <%= e.needed %></li>
-				<br />
-		<% end %>
-
-		<% @full.each do |e| %>
-			<li><%= link_to(event_path(e.id)) do %><%= e.start.strftime("%a, %b %e at %l:%M%P") %><% end %></li>
-			<li><%= e.location %></li>
-			<li>Full</li>
-			<br />
-		<% end %>
-
-		<% @ended.each do |e| %>
-				<li><%= link_to(event_path(e.id)) do %><%= e.start.strftime("%a, %b %e at %l:%M%P") %><% end %></li>
-				<li><%= e.location %></li>
-				<li>Ended</li>
-				<br />
-		<% end %>
-
-	<% end %>
-
-</ul>
+</div>
