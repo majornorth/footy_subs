@@ -1,88 +1,101 @@
-<%= link_to "Back to Events", root_path %>
-
-<h1>
-	<% if @event.status == "full" && @event.start > Time.now %>
-		Game full
-	<% elsif @event.start < Time.now %>
-		Game ended
-	<% else %> 
-		<%= @event.needed %> needed
+<header class="bar-title">
+	<%= link_to "Matches", root_path, class: "button-prev" %>
+	<h1 class="title">
+		Match details
+	</h1>
+	<% if signed_in? && current_user.id == @event.organizer %>
+			<%= link_to "Edit", edit_event_path, class: "button" %>
 	<% end %>
-</h1>
+</header>
 
-<% if signed_in? && current_user.id == @event.organizer %>
-	<p>
-	<%= link_to "edit", edit_event_path %> <%= link_to "delete", event_path, :method => "DELETE" %>
-	</p>
-<% end %>
+<div class="content content-padded">
 
-	<% if signed_in? && current_user.id != @event.organizer && @event.start > Time.now %>
 
-		<% if @event.users.select { |u| u.id == current_user.id }.empty? == true && @event.status != "full" %>
-			<%= form_for @event, :url => join_path do |f| %>
-				<%= f.hidden_field :event_id, :value => @event.id %>
-				<%= f.submit('Join') %>
+	<h1 class="title">
+		<% if @event.status == "full" && @event.start > Time.now %>
+			Game full
+		<% elsif @event.start < Time.now %>
+			Game ended
+		<% else %> 
+			<%= @event.needed %> needed
+		<% end %>
+	</h1>
+
+		<% if signed_in? && current_user.id != @event.organizer && @event.start > Time.now %>
+
+			<% if @event.users.select { |u| u.id == current_user.id }.empty? == true && @event.status != "full" %>
+				<%= form_for @event, :url => join_path do |f| %>
+					<%= f.hidden_field :event_id, :value => @event.id %>
+					<%= f.submit 'Join', class: 'button-main button-block' %>
+				<% end %> 
+			<% end %>
+
+			<% if @event.users.select { |u| u.id == current_user.id }.empty? == false %>
+				<%= form_for @event, :url => leave_path do |f| %>
+					<%= f.hidden_field :event_id, :value => @event.id %>
+					<%= f.submit 'Leave', class: 'button-main button-block' %>
+				<% end %>
 			<% end %> 
+
 		<% end %>
 
-		<% if @event.users.select { |u| u.id == current_user.id }.empty? == false %>
-			<%= form_for @event, :url => leave_path do |f| %>
-				<%= f.hidden_field :event_id, :value => @event.id %>
-				<%= f.submit('Leave') %>
-			<% end %>
-		<% end %> 
-
-	<% end %>
-
-<ul>
-	<li><strong>When:</strong> <%= @event.start.strftime("%a, %b %e at %l:%M%P") %></li>
-	<li><strong>Where:</strong> <%= @event.location %></li>
-	<li><strong>League:</strong> <%= @event.league %></li>
-	<li><strong>Skill:</strong> <%= @event.skill_level %></li>
-	<li><strong>Field:</strong> <%= @event.field_type %></li>
-	<% unless @event.note.empty? %>
-		<li><strong>Note:</strong> <%= @event.note %></li>
-	<% end %>
-</ul>
-
-<h2>Subs:</h2>
-
-<% if signed_in? %>
-	<ul>
-		<% @event.users.each do |u| %>
-			<% if u.id == current_user.id %>
-				You
-			<% else %>
-				<li><%= u.firstName %> <%= u.lastName %></li>
-			<% end %>
+	<ul class="list inset">
+		<li><span class="match-detail"><strong>STARTS</strong></span><%= @event.start.strftime("%a, %b %e at %l:%M%P") %></li>
+		<li><span class="match-detail"><strong>LOCATION</strong></span><%= @event.location %></li>
+		<li><span class="match-detail"><strong>LEAGUE</strong></span><%= @event.league %></li>
+		<li><span class="match-detail"><strong>SKILL</strong></span><%= @event.skill_level %></li>
+		<li><span class="match-detail"><strong>FIELD</strong></span><%= @event.field_type %></li>
+		<% unless @event.note.empty? %>
+			<li><span class="match-detail"><strong>NOTE</strong></span><div style="inline; margin: -17px 0 0 100px;"><%= @event.note %></div></li>
 		<% end %>
+	</ul>
 
-		<% if @event.users.empty? && @event.start > Time.now && current_user.id != @event.organizer %>
-			Join this match and be the first sub!
-		<% elsif @event.users.empty? && @event.start > Time.now && current_user.id == @event.organizer %>
-			Still waiting for subs to join this match.
+
+	<h2 style="margin: 30px 0 15px 0;">Subs</h2>
+
+	<% if signed_in? %>
+		<ul class="list inset" style="margin-bottom: 30px;">
+			<% @event.users.each do |u| %>
+				<% if u.id == current_user.id %>
+					<li>You</li>
+				<% else %>
+					<li><%= u.firstName %> <%= u.lastName %></li>
+				<% end %>
+			<% end %>
+
+			<% if @event.users.empty? && @event.start > Time.now && current_user.id != @event.organizer %>
+				<li>Join this match and be the first sub!</li>
+			<% elsif @event.users.empty? && @event.start > Time.now && current_user.id == @event.organizer %>
+				<li>Still waiting for subs to join this match.</li>
+			<% elsif @event.users.empty? && @event.start < Time.now %>
+				<li>Nobody joined this match.</li>
+			<% end %> 
+		</ul>
+
+	<% elsif ! signed_in? %>
+		<ul>
+			<% @event.users.each do |u| %>
+					<li><%= u.firstName %> <%= u.lastName %></li>
+			<% end %>
+		</ul>
+
+		<% if @event.users.empty? && @event.start > Time.now %>
+			<li>Join this match and be the first sub!</li>
 		<% elsif @event.users.empty? && @event.start < Time.now %>
-			Nobody joined this match.
+			<li>Nobody joined this match.</li>
 		<% end %> 
-	</ul>
+	<% end %>
 
-<% elsif ! signed_in? %>
-	<ul>
-		<% @event.users.each do |u| %>
-				<li><%= u.firstName %> <%= u.lastName %></li>
-		<% end %>
-	</ul>
-
-	<% if @event.users.empty? && @event.start > Time.now %>
-		Join this match and be the first sub!
-	<% elsif @event.users.empty? && @event.start < Time.now %>
-		Nobody joined this match.
-	<% end %> 
-<% end %>
+	<% if signed_in? && current_user.id == @event.organizer %>
+		<p>
+			<%= link_to "Remove match", event_path, :method => "DELETE", class: "button-negative button-block" %>
+		</p>
+	<% end %>
 
 	<% if ! signed_in? && @event.start > Time.now %>
 		Want to play in this match? <%= link_to "Sign in", signin_path %> or <%= link_to "Sign up", new_user_path %> to join as a sub.
 	<% end %>
+</div>
 
 
 

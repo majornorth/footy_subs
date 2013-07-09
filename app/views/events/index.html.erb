@@ -2,14 +2,18 @@
 	<% if signed_in? %>
 		<%= link_to "Profile", current_user, class: "button" %>
 	<% else %>
-		<%= link_to "Sign up", new_user_path, class: "button" %>
+		<%= link_to "Sign in", signin_path, class: "button" %>
 	<% end %> 
 
 	<h1 class="title">
 		<span style="display: none;">Footy Subs</span>
 		<img src="/assets/footy-subs.png" style="margin-top: 7px;" width="97px" height="35px">
 	</h1>
-	<%= link_to "Post", new_event_path, class: "button" %> 
+	<% if signed_in? %>
+		<%= link_to "Post", new_event_path, class: "button" %>
+	<% else %>
+		<%= link_to "Sign up", new_user_path, class: "button" %>
+	<% end %>
 </header>
 
 <div class="content">
@@ -27,16 +31,16 @@
 				<% end %>
 			<% end %>
 
-			<% @open.each do |e| %>
-				<% if e.users.exclude?(current_user) %>
-				<div class="lastOpen">
-					<li><%= link_to(event_path(e.id)) do %><strong><%= e.start.strftime("%a, %b %e at %l:%M%P") %></strong>
-					<span class="count"><%= e.users.count %> / <%= e.needed %></span>
-					<p><%= e.location %></p><% end %>
-					</li>
-				</div>
+			<div class="lastOpen">
+				<% @open.each do |e| %>
+					<% if e.users.exclude?(current_user) %>
+						<li><%= link_to(event_path(e.id)) do %><strong><%= e.start.strftime("%a, %b %e at %l:%M%P") %></strong>
+						<span class="count"><%= e.users.count %> / <%= e.needed %></span>
+						<p><%= e.location %></p><% end %>
+						</li>
+					<% end %>
 				<% end %>
-			<% end %>
+			</div>
 
 			<% @full.each do |e| %>
 				<% if e.users.exclude?(current_user) %>
