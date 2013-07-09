@@ -13,7 +13,7 @@
  */
 
  /**
- * Many elements are credited to:
+ * Most elements are credited to:
  * ==================================
  * Ratchet v1.0.0
  * Licensed under The MIT License
@@ -159,7 +159,7 @@ h1 {
   bottom: 0;
   left: 0;
   overflow: auto;
-  background: #CCC;
+  background: #fff;
   -webkit-transition-property: top, bottom;
           transition-property: top, bottom;
   -webkit-transition-duration: .2s, .2s;  
@@ -167,6 +167,11 @@ h1 {
   -webkit-transition-timing-function: linear, linear;
           transition-timing-function: linear, linear;
   -webkit-overflow-scrolling: touch;
+}
+
+/* Utility wrapper to pad in components like forms, block buttons and segmented-controllers so they're not full-bleed */
+.content-padded {
+  padding: 10px;
 }
 
 /* Hack to force all relatively and absolutely positioned elements still render while scrolling
@@ -245,7 +250,7 @@ h1 {
 -------------------------------------------------- */
 
 /* Generic style for all buttons in .bar-title */
-.bar-title [class*="button"] {
+.bar-title [class*="button"], .bar-title #submit-match {
   position: relative;
   z-index: 10; /* Places buttons over full width title */
   font-size: 12px;
@@ -266,6 +271,12 @@ h1 {
 .bar-title .title + [class*="button"]:last-child,
 .bar-title .button + [class*="button"]:last-child,
 .bar-title [class*="button"].pull-right {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.bar-title #submit-match {
   position: absolute;
   top: 5px;
   right: 5px;
@@ -348,7 +359,7 @@ h1 {
 /* General button styles
 -------------------------------------------------- */
 
-[class*="button"] {
+[class*="button"], #submit-match {
   position: relative;
   display: inline-block;
   padding: 4px 12px;
@@ -391,4 +402,161 @@ h1 {
   color: #fff;
   background-color: rgba(0, 0, 0, .3);
   border-radius: 100px;
+}
+
+/* Forms
+-------------------------------------------------- */
+
+/* Force form elements to inherit font styles */
+input,
+textarea,
+button,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Stretch inputs/textareas to full width and add height to maintain a consistent baseline */
+select,
+textarea,
+input[type="text"],
+input[type=search],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="tel"],
+input[type="color"],
+.input-group {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 3px;
+  box-shadow: 0 1px 1px rgba(255, 255, 255, .2), inset 0 1px 1px rgba(0, 0, 0, .1);
+  -webkit-appearance: none;
+  box-sizing: border-box;
+}
+
+/* Allow text area's height to grow larger than a normal input */
+textarea {
+  height: auto;
+}
+
+/* Style select button to look like part of the Ratchet's style */
+select {
+  height: auto;
+  font-size: 14px;
+  background-color: #f8f8f8;
+  background-image: -webkit-linear-gradient(top, #f8f8f8 0%, #d4d4d4 100%);
+  background-image: linear-gradient(to bottom, #f8f8f8 0%, #d4d4d4 100%);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .1);
+}
+
+/* Input groups (cluster multiple inputs together into a single group)
+-------------------------------------------------- */
+
+/* Reset from initial form setup styles */
+.input-group {
+  width: auto;
+  height: auto;
+  padding: 0;
+}
+
+/* Remove spacing, borders, shadows and rounding since it all belongs on the .input-group not the input */
+.input-group input {
+  margin-bottom: 0;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Remove bottom border on last input to avoid double bottom border */
+.input-group input:last-child {
+  border-bottom-width: 0;
+}
+
+/* Input groups with labels
+-------------------------------------------------- */
+
+/* To use labels with input groups, wrap a label and an input in an .input-row */
+.input-row {
+  overflow: hidden;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
+
+/* Remove bottom border on last input-row to avoid double bottom border */
+.input-row:last-child {
+  border-bottom-width: 0;
+}
+
+/* Labels get floated left with a set percentage width */
+.input-row label {
+  float: left;
+  width: 25%;
+  padding: 11px 10px 9px 13px; /* Optimizing the baseline for mobile. */
+  font-weight: bold;
+}
+
+/* Actual inputs float to right of labels and also have a set percentage */
+.input-row label + input {
+  float: right;
+  width: 60%;
+  padding-left: 0;
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+
+.input-row select { 
+  display: inline-block; 
+  width: 60.5%; 
+  padding: 5px 0 2px 10px; 
+  margin: 0; 
+  background: none; 
+  border: none; 
+  border-left: 1px rgba(0, 0, 0, .2) solid;
+  box-shadow: none;
+  height: 37px; 
+  border-radius: 0px; 
+  color: #666;
+}
+
+.input-row select#event_start_2i {
+  width: 15%; 
+  box-shadow: none;
+}
+
+.input-row select#event_start_3i {
+  width: 10%; 
+  box-shadow: none; 
+  padding-left: 8px;
+}
+
+.input-row select#event_start_4i {
+  width: 15%; 
+  box-shadow: none;
+}
+
+.input-row select#event_start_5i {
+  width: 22.5%; 
+  box-shadow: none;
+}
+
+.input-row input {
+  padding: 5px 0 2px 10px;
+  margin: 0;
+  border: none;
+  border-left: 1px rgba(0, 0, 0, .2) solid;
+  height: 37px;
+  color: #999;
 }
