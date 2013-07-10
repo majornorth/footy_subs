@@ -250,7 +250,7 @@ h1 {
 -------------------------------------------------- */
 
 /* Generic style for all buttons in .bar-title */
-.bar-title [class*="button"], .bar-title #submit-match {
+.bar-title [class*="button"], .bar-title .submit-match {
   position: relative;
   z-index: 10; /* Places buttons over full width title */
   font-size: 12px;
@@ -276,7 +276,7 @@ h1 {
   right: 5px;
 }
 
-.bar-title #submit-match {
+.submit-match {
   position: absolute;
   top: 5px;
   right: 5px;
@@ -460,6 +460,17 @@ h1 {
   width: 100px;
 }
 
+.match-note {
+  margin: 25px 0 5px 0; 
+  display: inline-block;
+}
+
+.match-note-parens {
+  display: inline; 
+  color: #999; 
+  padding-left: 10px;
+}
+
 
 /* Right-aligned subcontent in lists (chevrons, buttons, counts and toggles)
 -------------------------------------------------- */
@@ -479,7 +490,7 @@ h1 {
 /* General button styles
 -------------------------------------------------- */
 
-[class*="button"], #submit-match {
+[class*="button"], .submit-match {
   position: relative;
   display: inline-block;
   padding: 4px 12px;

@@ -1,6 +1,6 @@
 <header class="bar-title">
 	<% if signed_in? %>
-		<%= link_to "Profile", current_user, class: "button" %>
+		<a href="/users/<%= current_user.id %>/edit" class="button">Profile</a>
 	<% else %>
 		<%= link_to "Sign in", signin_path, class: "button" %>
 	<% end %> 

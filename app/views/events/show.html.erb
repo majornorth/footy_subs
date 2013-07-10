@@ -87,13 +87,11 @@
 	<% end %>
 
 	<% if signed_in? && current_user.id == @event.organizer %>
-		<p>
 			<%= link_to "Remove match", event_path, :method => "DELETE", class: "button-negative button-block" %>
-		</p>
 	<% end %>
 
 	<% if ! signed_in? && @event.start > Time.now %>
-		Want to play in this match? <%= link_to "Sign in", signin_path %> or <%= link_to "Sign up", new_user_path %> to join as a sub.
+		<p>Want to play in this match? <%= link_to "Sign in", signin_path %> or <%= link_to "Sign up", new_user_path %> to join as a sub.</p>
 	<% end %>
 </div>
 

@@ -1,7 +1,6 @@
 <header class="bar-title">
 	<%= link_to "Cancel", events_path, class: "button" %>
 	<h1 class="title">Post match</h1>
-	
 </header>
 
 <div class="content">
@@ -90,10 +89,10 @@
 			</div>
 		</div>
 
-			<h3 style="margin: 25px 0 5px 0; display: inline-block;"><%= f.label :note, 'NOTES' %></h3> <span style="display: inline; color: #999; padding-left: 10px;">Max 140 characters</span><br />
+			<h3 class="match-note"><%= f.label :note, 'NOTE' %></h3> <span class="match-note-parens">Max 140 characters</span><br />
 			<%= f.text_area :note, :cols => 40, :rows => 5 %>
 
-			<%= f.submit 'Submit', id: 'submit-match' %>
+			<%= f.submit 'Submit', class: 'submit-match' %>
 		
 		<% end %>
 	</div>
