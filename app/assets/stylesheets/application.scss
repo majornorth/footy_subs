@@ -398,6 +398,12 @@ h1 {
   border-bottom: 1px solid rgba(0, 0, 0, .1);
 }
 
+.list.details li {
+  position: relative;
+  padding: 20px 10px 20px 10px; /* Given extra right padding to accomodate counts, chevrons or buttons */
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
 .list li.expired {
   background: #CCC;
   color: #999; 

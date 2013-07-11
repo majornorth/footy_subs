@@ -1,16 +1,22 @@
-<% provide(:title, "Sign in") %>
-<h1>Sign in</h1>
+<header class="bar-title">
+	<%= link_to "Cancel", events_path, class: "button" %>
+	<h1 class="title">Sign in</h1>
+</header>
 
-<%= form_for(:session, url: sessions_path) do |f| %>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-    <br />
+<div class="content">
+	<div class="content-padded">
 
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-    <br />
+		<%= form_for(:session, url: sessions_path) do |f| %>
+		    <%= f.label :email, :style => "display: none;" %>
+		    <%= f.text_field :email, :placeholder => "Email" %>
+		    <br />
 
-    <%= f.submit "Sign in" %> <%= link_to "Cancel", events_path %></p>
-<% end %>
+		    <%= f.label :password, :style => "display: none;" %>
+		    <%= f.password_field :password, :placeholder => "Password" %>
+		    <br />
 
-<p>New user? <%= link_to "Sign up", new_user_path %>
+		    <%= f.submit 'Sign in', class: "button" %> 
+		    <br />
+		<% end %>
+	</div>
+</div>

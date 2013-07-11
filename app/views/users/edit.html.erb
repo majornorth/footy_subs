@@ -1,27 +1,35 @@
-<h2>Edit Profile</h2>
+<header class="bar-title">
+	<%= link_to "Cancel", events_path, class: "button" %>
+	<h1 class="title">Edit Profile</h1>
+	<%= link_to "Sign out", signout_path, method: "delete", class: "button" %>
+</header>
 
-<%= form_for @user do |f| %>
+<div class="content">
+	<div class="content-padded">
+		<%= form_for @user do |f| %>
 
-	<%= f.label :firstName, 'First Name' %>:
-	<%= f.text_field :firstName %>
-	<br />
+			<%= f.label :firstName, 'First Name', :style => "display: none;" %>
+			<%= f.text_field :firstName, :placeholder => "First name" %>
+			<br />
 
-	<%= f.label :lastName, 'Last Name' %>:
-	<%= f.text_field :lastName %>
-	<br />
+			<%= f.label :lastName, 'Last Name', :style => "display: none;" %>
+			<%= f.text_field :lastName, :placeholder => "Last name" %>
+			<br />
 
-	<%= f.label :email, 'Email' %>:
-	<%= f.text_field :email %>
-	<br />
+			<%= f.label :email, 'Email', :style => "display: none;" %>
+			<%= f.text_field :email, :placeholder => "Email" %>
+			<br />
 
-	<%= f.label :mobile, 'Mobile' %>:
-	<%= f.text_field :mobile %> (Numbers only)
-	<br />
+			<%= f.label :mobile, 'Mobile (Numbers only)', :style => "display: none;" %>
+			<%= f.text_field :mobile, :placeholder => "Mobile (numbers only)" %>
+			<br />
 
-	<%= f.label :password, 'Update Password' %>:
-	<%= f.password_field :password %>
-	<br />
+			<%= f.label :password, 'Update Password', :style => "display: none;" %>
+			<%= f.password_field :password, :placeholder => "Update password" %>
+			<br />
 
-	<%= f.submit(value = "Update") %> <%= link_to "Cancel", current_user %>
-	
-<% end %>
+			<%= f.submit 'Update', class: "button" %>
+			
+		<% end %>
+	</div>
+</div>

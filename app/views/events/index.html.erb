@@ -63,22 +63,24 @@
 
 		<% if ! signed_in? %>
 			
-			<% @open.each do |e| %>
+			<div class="lastOpen">
+				<% @open.each do |e| %>
 					<li><%= link_to(event_path(e.id)) do %><strong><%= e.start.strftime("%a, %b %e at %l:%M%P") %></strong>
 					<span class="count"><%= e.users.count %> / <%= e.needed %></span>
 					<p><%= e.location %></p><% end %>
 					</li>
-			<% end %>
+				<% end %>
+			</div>
 
 			<% @full.each do |e| %>
-				<%= link_to(event_path(e.id)) do %><strong><%= e.start.strftime("%a, %b %e at %l:%M%P") %></strong>
-				<span class="count">Full</span>
-				<p><%= e.location %></p><% end %>
-				</li>
+					<li class="expired"><%= link_to(event_path(e.id)) do %><strong><%= e.start.strftime("%a, %b %e at %l:%M%P") %></strong>
+					<span class="count">Full</span>
+					<p><%= e.location %></p><% end %>
+					</li>
 			<% end %>
 
 			<% @ended.limit(15).each do |e| %>
-					<li><%= link_to(event_path(e.id)) do %><strong><%= e.start.strftime("%a, %b %e at %l:%M%P") %></strong>
+					<li class="expired"><%= link_to(event_path(e.id)) do %><strong><%= e.start.strftime("%a, %b %e at %l:%M%P") %></strong>
 					<span class="count">Ended</span>
 					<p><%= e.location %></p><% end %>
 					</li>

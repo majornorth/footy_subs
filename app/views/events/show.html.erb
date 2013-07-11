@@ -39,7 +39,7 @@
 
 		<% end %>
 
-	<ul class="list inset">
+	<ul class="list inset details">
 		<li><span class="match-detail"><strong>STARTS</strong></span><%= @event.start.strftime("%a, %b %e at %l:%M%P") %></li>
 		<li><span class="match-detail"><strong>LOCATION</strong></span><%= @event.location %></li>
 		<li><span class="match-detail"><strong>LEAGUE</strong></span><%= @event.league %></li>
@@ -54,7 +54,7 @@
 	<h2 style="margin: 30px 0 15px 0;">Subs</h2>
 
 	<% if signed_in? %>
-		<ul class="list inset" style="margin-bottom: 30px;">
+		<ul class="list inset details" style="margin-bottom: 30px;">
 			<% @event.users.each do |u| %>
 				<% if u.id == current_user.id %>
 					<li>You</li>
@@ -72,27 +72,32 @@
 			<% end %> 
 		</ul>
 
-	<% elsif ! signed_in? %>
-		<ul>
+	<% elsif ! signed_in? && @event.users.count != 0 %>
+		<ul class="list inset details">
 			<% @event.users.each do |u| %>
 					<li><%= u.firstName %> <%= u.lastName %></li>
 			<% end %>
 		</ul>
 
+	<% elsif ! signed_in? %>
+
 		<% if @event.users.empty? && @event.start > Time.now %>
-			<li>Join this match and be the first sub!</li>
+			<ul class="list inset details">
+				<li><p>Want to play in this match? <%= link_to "Sign in", signin_path %> or <%= link_to "Sign up", new_user_path %>.</p></li>
+			</ul>
+
 		<% elsif @event.users.empty? && @event.start < Time.now %>
-			<li>Nobody joined this match.</li>
+			<ul class="list inset details">
+				<li>Nobody joined this match.</li>
+			</ul>
 		<% end %> 
+
 	<% end %>
 
 	<% if signed_in? && current_user.id == @event.organizer %>
 			<%= link_to "Remove match", event_path, :method => "DELETE", class: "button-negative button-block" %>
 	<% end %>
 
-	<% if ! signed_in? && @event.start > Time.now %>
-		<p>Want to play in this match? <%= link_to "Sign in", signin_path %> or <%= link_to "Sign up", new_user_path %> to join as a sub.</p>
-	<% end %>
 </div>
 
 
