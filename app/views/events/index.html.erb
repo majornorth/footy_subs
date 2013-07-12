@@ -24,7 +24,7 @@
 
 			<% @joined.each do |e| %>
 				<% if e.status == "open" && e.users.include?(current_user) || e.status == "full" && e.users.include?(current_user) %>
-					<li><%= link_to(event_path(e.id)) do %><strong><%= e.start.strftime("%a, %b %e at %l:%M%P") %></strong>
+					<li class="joined"><%= link_to(event_path(e.id)) do %><strong><%= e.start.strftime("%a, %b %e at %l:%M%P") %></strong>
 					<span class="count">Joined</span>
 					<p><%= e.location %></p><% end %>
 					</li>

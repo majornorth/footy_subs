@@ -17,7 +17,7 @@
 		<% elsif @event.start < Time.now %>
 			Game ended
 		<% else %> 
-			<%= @event.needed %> needed
+			<%= @event.needed - @event.users.count %> subs still needed
 		<% end %>
 	</h1>
 

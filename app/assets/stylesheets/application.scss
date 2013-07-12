@@ -398,6 +398,10 @@ h1 {
   border-bottom: 1px solid rgba(0, 0, 0, .1);
 }
 
+.list li.joined .count {
+  background: #264c26;
+}
+
 .list.details li {
   position: relative;
   padding: 20px 10px 20px 10px; /* Given extra right padding to accomodate counts, chevrons or buttons */
@@ -541,6 +545,7 @@ h1 {
 
 /* Main button */
 .button-main {
+  width: 100%;
   background-color: #336633;
   background-image: -webkit-linear-gradient(top, #336633 0, #264c26 100%);
   background-image: linear-gradient(to bottom, #336633 0, #264c26 100%);
