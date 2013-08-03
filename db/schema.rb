@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130620222728) do
+ActiveRecord::Schema.define(:version => 20130803201156) do
 
   create_table "events", :force => true do |t|
     t.datetime "start"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(:version => 20130620222728) do
     t.string   "lastName"
     t.string   "email"
     t.string   "password_digest"
-    t.integer  "mobile"
+    t.string   "mobile"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.string   "remember_token"
