@@ -27,7 +27,7 @@
 			<br />
 
 			<%= f.label :email, 'Email', :style => "display: none;" %>
-			<%= f.text_field :email, :placeholder => "Email" %>
+			<%= f.text_field :email, :placeholder => "Email", :autocorrect => "off", :autocapitalize => "off" %>
 			<% if @user.errors[:email].any? %>
 			  <div class="error_explanation">
 				<p>Please make sure you're email is correct.</p>
