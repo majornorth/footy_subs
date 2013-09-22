@@ -77,6 +77,23 @@ class EventsController < ApplicationController
     if @attendees == @needed
       @event.update_attributes(:status => "full")
     end
+
+    e_id = @event.id
+    starts = @event.start
+    organizer_id = @event.organizer
+    organizer_number = User.find(organizer_id).mobile
+
+    twilio_sid = ENV["TWILIO_SID"]
+    twilio_token = ENV["TWILIO_TOKEN"]
+    @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+
+    @account = @twilio_client.account
+      @message = @account.sms.messages.create({
+        :from => '+14695027613',
+        :to => organizer_number,
+        :body => "#{current_user.firstName} #{current_user.lastName} has joined as a sub for the match on #{starts.strftime("%A, %b %e at%l:%M%P")}. Match details: footysubs.herokuapp.com#{event_path(e_id)}"
+        })
+
     redirect_to :back
   end
 
@@ -88,6 +105,23 @@ class EventsController < ApplicationController
     if @attendees < @needed
       @event.update_attributes(:status => "open")
     end
+
+    e_id = @event.id
+    starts = @event.start
+    organizer_id = @event.organizer
+    organizer_number = User.find(organizer_id).mobile
+
+    twilio_sid = ENV["TWILIO_SID"]
+    twilio_token = ENV["TWILIO_TOKEN"]
+    @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+
+    @account = @twilio_client.account
+      @message = @account.sms.messages.create({
+        :from => '+14695027613',
+        :to => organizer_number,
+        :body => "#{current_user.firstName} #{current_user.lastName} is no longer signed up as a sub for the match on #{starts.strftime("%A, %b %e at%l:%M%P")}. Match details: footysubs.herokuapp.com#{event_path(e_id)}"
+        })
+
     redirect_to :back
   end
 end
