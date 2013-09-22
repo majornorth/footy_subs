@@ -24,7 +24,7 @@ class EventsController < ApplicationController
     e_id = @event.id
 
     starts = @event.start
-    
+
     twilio_sid = ENV["TWILIO_SID"]
     twilio_token = ENV["TWILIO_TOKEN"]
     @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
@@ -40,7 +40,7 @@ class EventsController < ApplicationController
       @message = @account.sms.messages.create({
         :from => '+14695027613',
         :to => number,
-        :body => "A sub is needed for a soccer match happening #{starts.strftime("%A, %b %e at%l:%M%P")}. You can join here: footysubsapp.com#{event_path(e_id)}"
+        :body => "A sub is needed for a soccer match happening #{starts.strftime("%A, %b %e at%l:%M%P")}. You can join here: footysubs.herokuapp.com#{event_path(e_id)}"
         })
     end
 
