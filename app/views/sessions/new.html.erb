@@ -6,6 +6,12 @@
 <div class="content">
 	<div class="content-padded">
 
+		<% if flash[:error] %>
+		    <div class="signin-error">
+		    	<p><%= flash[:error] %></p>
+		    </div>
+		<% end %>
+
 		<%= form_for(:session, url: sessions_path) do |f| %>
 		    <%= f.label :email, :style => "display: none;" %>
 		    <%= f.text_field :email, :placeholder => "Email", :autocorrect => "off", :autocapitalize => "off" %>
