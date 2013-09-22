@@ -20,6 +20,30 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(params[:event]) 
     @event.save
+
+    e_id = @event.id
+
+    starts = @event.start
+    
+    twilio_sid = ENV["TWILIO_SID"]
+    twilio_token = ENV["TWILIO_TOKEN"]
+    @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+
+    subscribers = User.all
+    subscriber_numbers = Array.new
+    subscribers.each do |s|
+      subscriber_numbers.push(s.mobile)
+    end
+
+    subscriber_numbers.each do |number|
+      @account = @twilio_client.account
+      @message = @account.sms.messages.create({
+        :from => '+14695027613',
+        :to => number,
+        :body => "A sub is needed for a soccer match happening #{starts.strftime("%A, %b %e at%l:%M%P")}. You can join here: footysubsapp.com#{event_path(e_id)}"
+        })
+    end
+
     redirect_to events_path
   end
 
