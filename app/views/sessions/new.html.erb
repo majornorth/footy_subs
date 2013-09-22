@@ -8,7 +8,7 @@
 
 		<%= form_for(:session, url: sessions_path) do |f| %>
 		    <%= f.label :email, :style => "display: none;" %>
-		    <%= f.text_field :email, :placeholder => "Email" %>
+		    <%= f.text_field :email, :placeholder => "Email", :autocorrect => "off", :autocapitalize => "off" %>
 		    <br />
 
 		    <%= f.label :password, :style => "display: none;" %>
