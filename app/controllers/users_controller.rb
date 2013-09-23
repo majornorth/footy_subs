@@ -24,7 +24,13 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update_attributes(params[:user])
-    redirect_to user_path
+    if @user.save
+      flash.now[:message] = 'Your last name has been updated.'
+      render 'edit'
+    else
+      flash.now[:error] = 'Please try again. Your profile was not updated.'
+      render 'edit'
+    end
   end
 
   def destroy
