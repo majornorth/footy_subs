@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update_attributes(params[:user])
     if @user.save
-      flash.now[:message] = 'Your last name has been updated.'
+      flash.now[:message] = 'Your profile has been updated.'
       render 'edit'
     else
       flash.now[:error] = 'Please try again. Your profile was not updated.'

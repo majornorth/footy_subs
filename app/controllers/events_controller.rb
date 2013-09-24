@@ -40,7 +40,7 @@ class EventsController < ApplicationController
       @message = @account.sms.messages.create({
         :from => '+14695027613',
         :to => number,
-        :body => "A sub is needed for a soccer match happening #{starts.strftime("%A, %b %e at%l:%M%P")}. You can join here: footysubs.herokuapp.com#{event_path(e_id)}"
+        :body => "A sub is needed for a soccer match happening #{starts.strftime("%A, %b %e at%l:%M%P")}. You can join here: footysubs.com#{event_path(e_id)}"
         })
     end
 
@@ -49,18 +49,65 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
-    @attendees = @event.users
   end
 
   def update
     @event = Event.find(params[:id])
     @event.needed = params[:needed]
     @event.update_attributes(params[:event])
+
+    e_id = @event.id
+
+    starts = @event.start
+
+    twilio_sid = ENV["TWILIO_SID"]
+    twilio_token = ENV["TWILIO_TOKEN"]
+    @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+
+    subscribers = @event.users
+    subscriber_numbers = Array.new
+    subscribers.each do |s|
+      subscriber_numbers.push(s.mobile)
+    end
+
+    subscriber_numbers.each do |number|
+      @account = @twilio_client.account
+      @message = @account.sms.messages.create({
+        :from => '+14695027613',
+        :to => number,
+        :body => "The match you joined scheduled for #{starts.strftime("%A, %b %e at%l:%M%P")} has been updated. Details: footysubs.com#{event_path(e_id)}"
+        })
+    end
+
     redirect_to event_path
   end
 
   def destroy
-    Event.find(params[:id]).destroy
+    @event = Event.find(params[:id])
+    e_id = @event.id
+
+    starts = @event.start
+
+    twilio_sid = ENV["TWILIO_SID"]
+    twilio_token = ENV["TWILIO_TOKEN"]
+    @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+
+    subscribers = @event.users
+    subscriber_numbers = Array.new
+    subscribers.each do |s|
+      subscriber_numbers.push(s.mobile)
+    end
+
+    subscriber_numbers.each do |number|
+      @account = @twilio_client.account
+      @message = @account.sms.messages.create({
+        :from => '+14695027613',
+        :to => number,
+        :body => "Subs are no longer needed for the match on #{starts.strftime("%A, %b %e at%l:%M%P")}. Be sure to check other matches for opportunities to play: footysubs.com"
+        })
+    end
+
+    @event.destroy
     # need to destroy events_users joins
     redirect_to events_path
   end
@@ -91,7 +138,7 @@ class EventsController < ApplicationController
       @message = @account.sms.messages.create({
         :from => '+14695027613',
         :to => organizer_number,
-        :body => "#{current_user.firstName} #{current_user.lastName} has joined as a sub for the match on #{starts.strftime("%A, %b %e at%l:%M%P")}. Match details: footysubs.herokuapp.com#{event_path(e_id)}"
+        :body => "#{current_user.firstName} #{current_user.lastName} has joined as a sub for the match on #{starts.strftime("%A, %b %e at%l:%M%P")}. Match details: footysubs.com#{event_path(e_id)}"
         })
 
     redirect_to :back
@@ -119,7 +166,7 @@ class EventsController < ApplicationController
       @message = @account.sms.messages.create({
         :from => '+14695027613',
         :to => organizer_number,
-        :body => "#{current_user.firstName} #{current_user.lastName} is no longer signed up as a sub for the match on #{starts.strftime("%A, %b %e at%l:%M%P")}. Match details: footysubs.herokuapp.com#{event_path(e_id)}"
+        :body => "#{current_user.firstName} #{current_user.lastName} is no longer signed up as a sub for the match on #{starts.strftime("%A, %b %e at%l:%M%P")}. Match details: footysubs.com#{event_path(e_id)}"
         })
 
     redirect_to :back
