@@ -7,6 +7,7 @@ gem "thin", "~> 1.5.1"
 gem "quiet_assets", "~> 1.0.2"
 gem 'bcrypt-ruby', '3.0.1'
 gem 'twilio-ruby'
+gem 'iron_worker_ng'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

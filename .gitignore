@@ -16,3 +16,6 @@
 
 # Ignore file containing API auth tokens
 /config/local_env.yml
+
+# Ignore auth for Iron.io
+.iron.json
