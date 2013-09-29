@@ -2,16 +2,21 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   include SessionsHelper
 
-  def index
-  	require 'twilio-ruby'
-  	require 'uber_config'
+  require 'twilio-ruby'
+  require 'iron_worker_ng'
+  require 'uber_config'
 
+  def index
+  	
   	begin
   	  @config = UberConfig.load()
   	  @params = @config
+  	  @iw = IronWorkerNG::Client.new
   	rescue => ex
   	  @config = params
   	end
+
+  	@iw.tasks.create("sms", @config)
 
   	twilio_sid = ENV["TWILIO_SID"]
   	twilio_token = ENV["TWILIO_TOKEN"]
