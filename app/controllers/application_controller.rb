@@ -3,34 +3,8 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   def index
-  	
-  	require 'twilio-ruby'
-  	require 'iron_worker_ng'
-  	require 'uber_config'
-
-  	begin
-  	  @config = UberConfig.load()
-  	  @params = @config
-  	  @iw = IronWorkerNG::Client.new
-  	rescue => ex
-  	  @config = params
-  	end
-
-  	twilio_sid = ENV["TWILIO_SID"]
-  	twilio_token = ENV["TWILIO_TOKEN"]
-  	@twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
-
-  	subscriber_numbers = ['5157080626','4155156286']
-
-  	subscriber_numbers.each do |number|
-  	  r = @client.account.sms.messages.create({
-  		  :from => from,
-  		  :to => number,
-  		  :body => "Hello from Stewart via Heroku and IronWorker!"
-  	  })
-  	end
-
-  	@iw.tasks.create("sms", @config)
+  	iron_worker = IronWorkerNG::Client.new
+  	iron_worker.tasks.create("hello", "foo"=>"bar")
   end
 
   # Force signout to prevent CSRF attacks
