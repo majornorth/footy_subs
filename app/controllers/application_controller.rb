@@ -18,11 +18,12 @@ class ApplicationController < ActionController::Base
   	end
 
   	subscriber_numbers.each do |number|
-  	  @message = @twilio_client.account.sms.messages.create({
-  		  :from => '+14695027613',
-  		  :to => number,
-  		  :body => "Ashley, let me know if you got this text from IronWorker. Also, I love you!"
-  	  })
+  	  @account = @twilio_client.account
+  	  @message = @account.sms.messages.create({
+  	    :from => '+14695027613',
+  	    :to => number,
+  	    :body => "A sub is needed for a soccer match."
+  	    })
   	end
   end
 
