@@ -2,6 +2,32 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   include SessionsHelper
 
+  def index
+  	require 'twilio-ruby'
+  	require 'uber_config'
+
+  	begin
+  	  @config = UberConfig.load()
+  	  @params = @config
+  	rescue => ex
+  	  @config = params
+  	end
+
+  	twilio_sid = ENV["TWILIO_SID"]
+  	twilio_token = ENV["TWILIO_TOKEN"]
+  	@twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+
+  	subscriber_numbers = ['5157080626','4155156286']
+
+  	subscriber_numbers.each do |number|
+  	  r = @client.account.sms.messages.create({
+  		  :from => from,
+  		  :to => number,
+  		  :body => "Hello from Stewart via Heroku and IronWorker!"
+  	  })
+  	end
+  end
+
   # Force signout to prevent CSRF attacks
   def handle_unverified_request
     sign_out
