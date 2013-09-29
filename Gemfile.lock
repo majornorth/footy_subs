@@ -124,6 +124,7 @@ GEM
       jwt (>= 0.1.2)
       multi_json (>= 1.3.0)
     tzinfo (0.3.37)
+    uber_config (1.1.0)
     uglifier (2.0.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
@@ -142,4 +143,5 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   thin (~> 1.5.1)
   twilio-ruby
+  uber_config
   uglifier (>= 1.0.3)
