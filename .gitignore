@@ -19,6 +19,3 @@
 
 # Ignore worker files
 /workers/*
-
-# Ignore application configuration
-/config/application.yml
