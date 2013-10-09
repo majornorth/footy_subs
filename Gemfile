@@ -9,6 +9,7 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'twilio-ruby'
 gem 'iron_worker_ng'
 gem 'uber_config'
+gem 'figaro'
 
 
 # Bundle edge Rails instead:
