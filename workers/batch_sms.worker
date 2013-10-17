@@ -1,0 +1,12 @@
+runtime 'ruby'
+
+gem 'twilio-ruby'
+gem 'activerecord'
+gem 'pg'
+
+file 'user.rb'
+file 'event.rb'
+
+remote
+
+exec 'batch_sms.rb'
