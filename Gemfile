@@ -10,6 +10,8 @@ gem 'twilio-ruby'
 gem 'iron_worker_ng'
 gem 'uber_config'
 gem 'figaro'
+gem 'acts_as_commentable_with_threading'
+gem 'simple_form'
 
 
 # Bundle edge Rails instead:
