@@ -3,7 +3,7 @@
     <%= button_to "delete", comment_path(comment), :method => :delete, :remote => true, :disable_with => "x", :class => 'delete-confirmation', :form_class => 'delete-comment' %>
   <% end %>
   <h4>
-    <%= comment.user.firstName %> <%= comment.user.lastName %>
+    <%= comment.user.firstName %> <%= comment.user.lastName %><br />
     <small>
       <%= comment.updated_at.strftime("%A, %b %e at%l:%M%P") %>
     </small>
