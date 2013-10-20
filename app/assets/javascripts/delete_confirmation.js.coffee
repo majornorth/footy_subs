@@ -1,12 +1,12 @@
 class window.DeleteConfirmation
   constructor: (options = {}) ->
     @selector    = options.selector || '.delete-confirmation'
-    @confirmText = options.confirmText || 'Are you sure?'
+    @confirmText = options.confirmText || 'Confirm delete'
     @convertButtons()
     @initializeEvents()
  
-  deleteClass: 'delete-confirmation-delete-button'
-  confirmClass: 'delete-confirmation-confirm-button'
+  deleteClass: 'delete-button'
+  confirmClass: 'confirm-button'
  
   convertButtons: ->
     buttons = $(@selector)
@@ -24,7 +24,7 @@ class window.DeleteConfirmation
  
   createConfirmationButton: (button) ->
     clone = button.clone()
-    clone.val 'test'
+    clone.val 'delete'
     clone.addClass @confirmClass
     clone.click (event) =>
       event.stopPropagation()
