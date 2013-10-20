@@ -94,7 +94,7 @@
 
 	<% end %>
 
-	<% if signed_in? && current_user.id == @event.organizer || @event.users.select { |u| u.id == current_user.id }.empty? == false %>
+	<% if signed_in? %>
 		<div class ="comments">
 			<h2>Comments</h2>
 				<%= render :partial => 'comments/comment', :collection => @comments, :as => :comment %>
