@@ -94,13 +94,13 @@
 
 	<% end %>
 
-	<% if signed_in? %>
-		<div class ="comments">
-			<h2>Comments</h2>
-				<%= render :partial => 'comments/comment', :collection => @comments, :as => :comment %>
+	<div class ="comments">
+		<h2>Comments</h2>
+			<%= render :partial => 'comments/comment', :collection => @comments, :as => :comment %>
+			<% if signed_in? %>
 				<%= render :partial => 'comments/form', :locals => { :comment => @new_comment } %>
-		</div>
-	<% end %>
+			<% end %>
+	</div>
 
 	<% if signed_in? && current_user.id == @event.organizer %>
 			<%= link_to "Remove match", event_path, :method => "DELETE", class: "button-negative button-block" %>
