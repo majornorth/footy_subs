@@ -45,6 +45,7 @@
 		<li><span class="match-detail"><strong>LEAGUE</strong></span><%= @event.league %></li>
 		<li><span class="match-detail"><strong>SKILL</strong></span><%= @event.skill_level %></li>
 		<li><span class="match-detail"><strong>FIELD</strong></span><%= @event.field_type %></li>
+		<li><span class="match-detail"><strong>CAPTAIN</strong></span><%= @organizer.firstName %> <%= @organizer.lastName %></li>
 		<% unless @event.note.empty? %>
 			<li><span class="match-detail"><strong>NOTE</strong></span><div style="inline; margin: -17px 0 0 100px;"><%= @event.note %></div></li>
 		<% end %>

@@ -116,6 +116,8 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @comments = @event.comment_threads.order('created_at asc')
     @new_comment = Comment.build_from(@event, current_user, "")
+    organizer_id = @event.organizer
+    @organizer = User.find(organizer_id)
   end
 
   def join
