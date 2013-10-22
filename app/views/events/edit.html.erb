@@ -95,6 +95,10 @@
 
 			<%= f.submit 'Update', class: 'button-main button-block' %>
 
+			<% if signed_in? && current_user.id == @event.organizer %>
+					<%= link_to "Delete match", event_path, :method => "DELETE", class: "button-negative button-block", style: "margin: 30px 0 15px 0;" %>
+			<% end %>
+
 		<% end %>
 	</div>
 </div>
