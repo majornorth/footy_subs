@@ -10,7 +10,7 @@
 		<img src="/assets/footy-subs.png" style="margin-top: 7px;" width="97px" height="35px">
 	</h1>
 	<% if signed_in? %>
-		<%= link_to "Find Subs", new_event_path, class: "button" %>
+		<%= link_to "Post", new_event_path, class: "button" %>
 	<% else %>
 		<%= link_to "Sign up", new_user_path, class: "button" %>
 	<% end %>
