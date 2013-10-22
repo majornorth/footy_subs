@@ -94,10 +94,15 @@
 
 	<% end %>
 
-	<% if signed_in? && @event.start > Time.now %>
+	<% if signed_in? && @comments.empty? != true %>
 		<div class ="comments">
 			<h2>Comments</h2>
 				<%= render :partial => 'comments/comment', :collection => @comments, :as => :comment %>
+				<%= render :partial => 'comments/form', :locals => { :comment => @new_comment } %>
+		</div>
+	<% else %>
+		<div class ="comments">
+			<h2>0 comments</h2>
 				<%= render :partial => 'comments/form', :locals => { :comment => @new_comment } %>
 		</div>
 	<% end %>
