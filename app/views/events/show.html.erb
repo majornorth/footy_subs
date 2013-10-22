@@ -94,7 +94,7 @@
 
 	<% end %>
 
-	<% if signed_in? %>
+	<% if signed_in? && @event.start > Time.now %>
 		<div class ="comments">
 			<h2>Comments</h2>
 				<%= render :partial => 'comments/comment', :collection => @comments, :as => :comment %>
