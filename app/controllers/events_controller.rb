@@ -40,7 +40,7 @@ class EventsController < ApplicationController
       @message = @account.sms.messages.create({
         :from => '+14695027613',
         :to => number,
-        :body => "A sub is needed for a soccer match happening #{starts.strftime("%A, %b %e at%l:%M%P")}. You can join here: footysubs.com#{event_path(e_id)}"
+        :body => "A sub is needed for a soccer match happening #{starts.strftime("%A, %b %e at%l:%M%P")}. You can join here: footysubs.com/match/#{e_id}"
         })
     end
 
@@ -79,7 +79,7 @@ class EventsController < ApplicationController
       @message = @account.sms.messages.create({
         :from => '+14695027613',
         :to => number,
-        :body => "The match you joined scheduled for #{starts.strftime("%A, %b %e at%l:%M%P")} has been updated. Details: footysubs.com#{event_path(e_id)}"
+        :body => "The match you joined scheduled for #{starts.strftime("%A, %b %e at%l:%M%P")} has been updated. Details: footysubs.com/match/#{e_id}"
         })
     end
 
@@ -146,7 +146,7 @@ class EventsController < ApplicationController
       @message = @account.sms.messages.create({
         :from => '+14695027613',
         :to => organizer_number,
-        :body => "#{current_user.firstName} #{current_user.lastName} has joined as a sub for the match on #{starts.strftime("%A, %b %e at%l:%M%P")}. Match details: footysubs.com#{event_path(e_id)}"
+        :body => "#{current_user.firstName} #{current_user.lastName} has joined as a sub for the match on #{starts.strftime("%A, %b %e at%l:%M%P")}. Match details: footysubs.com/match/#{e_id}"
         })
 
     redirect_to :back
@@ -174,7 +174,7 @@ class EventsController < ApplicationController
       @message = @account.sms.messages.create({
         :from => '+14695027613',
         :to => organizer_number,
-        :body => "#{current_user.firstName} #{current_user.lastName} is no longer signed up as a sub for the match on #{starts.strftime("%A, %b %e at%l:%M%P")}. Match details: footysubs.com#{event_path(e_id)}"
+        :body => "#{current_user.firstName} #{current_user.lastName} is no longer signed up as a sub for the match on #{starts.strftime("%A, %b %e at%l:%M%P")}. Match details: footysubs.com/match/#{e_id}"
         })
 
     redirect_to :back
