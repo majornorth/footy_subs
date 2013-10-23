@@ -56,6 +56,10 @@ class EventsController < ApplicationController
     @event.needed = params[:needed]
     @event.update_attributes(params[:event])
 
+    if @event.start > Time.now && @event.status != "full"
+      @event.update_attributes(:status => "open")
+    end
+
     e_id = @event.id
 
     starts = @event.start
