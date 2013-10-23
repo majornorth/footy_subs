@@ -250,7 +250,7 @@ h1 {
 -------------------------------------------------- */
 
 /* Generic style for all buttons in .bar-title */
-.bar-title [class*="button"], .bar-title .submit-match {
+.bar-title [class*="button"] {
   position: relative;
   z-index: 10; /* Places buttons over full width title */
   font-size: 12px;
