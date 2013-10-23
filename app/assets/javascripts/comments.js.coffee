@@ -15,7 +15,11 @@ jQuery ->
             .removeAttr('disabled', 'disabled')
             .val('');
           $(xhr.responseText).hide().insertBefore($(this)).show('slow')
-
+      
+      $("#comment_body").focus ->
+          $("html").animate
+               scrollTop: this.target.offset().top
+      
       # Delete a comment
       $(document)
         .on "ajax:beforeSend", ".comment", ->
@@ -24,4 +28,6 @@ jQuery ->
           $(this).hide('fast')
         .on "ajax:error", ".comment", ->
           $(this).fadeTo('fast', 1)
+
+
 
