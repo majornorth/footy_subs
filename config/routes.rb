@@ -1,5 +1,7 @@
 Pickup::Application.routes.draw do
 
+  get '/signup', to: 'signup#index'
+
   resources :events, :users, :comments
   resources :sessions, only: [:new, :create, :destroy]
   resources :comments, only: [:create, :destroy]

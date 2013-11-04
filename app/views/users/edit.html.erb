@@ -58,7 +58,7 @@
 			<br />
 
 			<%= f.label :password, 'Update Password', :style => "display: none;" %>
-			<%= f.password_field :password, :placeholder => "Update password" %>
+			<%= f.password_field :password, :placeholder => "Enter new password if you want to change it" %>
 			<% if @user.errors[:password].any? %>
 			  <div class="error-explanation">
 				<p>Please choose a password longer than 6 characters.</p>

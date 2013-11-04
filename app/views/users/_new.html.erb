@@ -1,0 +1,48 @@
+<%= form_for @user do |f| %>
+	<%= f.label :firstName, 'First Name', :style => "display: none;" %>
+	<%= f.text_field :firstName, :placeholder => "First name" %>
+	<% if @user.errors[:firstName].any? %>
+	  <div class="error-explanation">
+		<p>A first name less than 30 characters is required.</p>
+	  </div>
+	<% end %>
+	<br />
+
+	<%= f.label :lastName, 'Last Name', :style => "display: none;" %>
+	<%= f.text_field :lastName, :placeholder => "Last name" %>
+	<% if @user.errors[:lastName].any? %>
+	  <div class="error-explanation">
+		<p>A last name less than 30 characters is required.</p>
+	  </div>
+	<% end %>
+	<br />
+
+	<%= f.label :email, 'Email', :style => "display: none;" %>
+	<%= f.text_field :email, :placeholder => "Email", :autocorrect => "off", :autocapitalize => "off" %>
+	<% if @user.errors[:email].any? %>
+	  <div class="error-explanation">
+		<p>Please make sure you're email is correct.</p>
+	  </div>
+	<% end %>
+	<br />
+
+	<%= f.label :mobile, 'Mobile', :style => "display: none;" %>
+	<%= f.text_field :mobile, :placeholder => "Mobile (numbers only)" %>
+	<% if @user.errors[:mobile].any? %>
+	  <div class="error-explanation">
+		<p>Please enter a number using only numbers, such as: 4156785555.</p>
+	  </div>
+	<% end %>
+	<br />
+
+	<%= f.label :password, 'Password', :style => "display: none;" %>
+	<%= f.password_field :password, :placeholder => "Password" %>
+	<% if @user.errors[:password].any? %>
+	  <div class="error-explanation">
+		<p>Please choose a password longer than 6 characters.</p>
+	  </div>
+	<% end %>
+	<br />
+
+	<%= f.submit 'Sign up', class: 'button-main button-block' %>
+<% end %>

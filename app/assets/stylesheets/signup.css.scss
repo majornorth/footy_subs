@@ -1,0 +1,18 @@
+// Place all the styles related to the signup controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@media (min-width: 700px) {
+	.lander {
+	  width: 300px;
+	  margin: 0 auto;
+	}
+}
+
+@media (min-width: 700px) {
+	.lander-bg {
+		background: url(../assets/lander-bg.jpg);
+		background-size: 100% auto;
+		padding-bottom: 300px;
+	}
+}
