@@ -2,17 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@media (min-width: 700px) {
+@media (min-width: 400px) {
 	.lander {
-	  width: 300px;
 	  margin: 0 auto;
+	  width: 300px;
 	}
 }
 
-@media (min-width: 700px) {
+@media (min-width: 450px) {
 	.lander-bg {
-		background: url(../assets/lander-bg.jpg);
-		background-size: 100% auto;
+		background: url(../assets/lander-bg.jpg) no-repeat;
+		background-size: 125% auto;
 		padding-bottom: 300px;
 	}
 }
+
+.lander-header {
+	margin: 60px auto 0 auto;
+	text-align: center;
+	width: 75%;
+}
+
