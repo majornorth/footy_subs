@@ -1,6 +1,8 @@
 Pickup::Application.routes.draw do
 
-  get '/signup', to: 'signup#index'
+  # get '/signup', to: 'signup#new'
+  root :to => "signup#new"
+  match '/signup/success', to: 'signup#success'
 
   resources :events, :users, :comments
   resources :sessions, only: [:new, :create, :destroy]

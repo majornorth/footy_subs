@@ -504,6 +504,13 @@ h1 {
 /* General button styles
 -------------------------------------------------- */
 
+#twitter-widget-0 {
+  padding: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+}
+
 [class*="button"] {
   position: relative;
   display: inline-block;
@@ -614,7 +621,7 @@ h1 {
 /* General count styles
 -------------------------------------------------- */
 
-[class*="count"] {
+[class*="count"]:not(.twitter-share-button) {
   display: inline-block;
   padding: 4px 9px;
   font-size: 12px;
