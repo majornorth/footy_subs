@@ -1,6 +1,6 @@
 <%= form_for @user do |f| %>
 	<%= f.label :firstName, 'First Name', :style => "display: none;" %>
-	<%= f.text_field :firstName, :placeholder => "First name", :value => f.object.firstName.capitalize %>
+	<%= f.text_field :firstName, :placeholder => "First name" %>
 	<% if @user.errors[:firstName].any? %>
 	  <div class="error-explanation">
 		<p>A first name less than 30 characters is required.</p>
@@ -9,7 +9,7 @@
 	<br />
 
 	<%= f.label :lastName, 'Last Name', :style => "display: none;" %>
-	<%= f.text_field :lastName, :placeholder => "Last name", :autocapitalize => "on" %>
+	<%= f.text_field :lastName, :placeholder => "Last name" %>
 	<% if @user.errors[:lastName].any? %>
 	  <div class="error-explanation">
 		<p>A last name less than 30 characters is required.</p>
