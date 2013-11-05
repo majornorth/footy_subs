@@ -1,6 +1,6 @@
 <%= form_for @user do |f| %>
 	<%= f.label :firstName, 'First Name', :style => "display: none;" %>
-	<%= f.text_field :firstName, :placeholder => "First name" %>
+	<%= f.text_field :firstName, :placeholder => "First name", :autocapitalize => "on" %>
 	<% if @user.errors[:firstName].any? %>
 	  <div class="error-explanation">
 		<p>A first name less than 30 characters is required.</p>
@@ -9,7 +9,7 @@
 	<br />
 
 	<%= f.label :lastName, 'Last Name', :style => "display: none;" %>
-	<%= f.text_field :lastName, :placeholder => "Last name" %>
+	<%= f.text_field :lastName, :placeholder => "Last name", :autocapitalize => "on" %>
 	<% if @user.errors[:lastName].any? %>
 	  <div class="error-explanation">
 		<p>A last name less than 30 characters is required.</p>
@@ -18,7 +18,7 @@
 	<br />
 
 	<%= f.label :email, 'Email', :style => "display: none;" %>
-	<%= f.text_field :email, :placeholder => "Email", :autocorrect => "off", :autocapitalize => "off" %>
+	<%= f.email_field :email, :placeholder => "Email", :autocorrect => "off", :autocapitalize => "off" %>
 	<% if @user.errors[:email].any? %>
 	  <div class="error-explanation">
 		<p>Please make sure you're email is correct.</p>
@@ -27,7 +27,7 @@
 	<br />
 
 	<%= f.label :mobile, 'Mobile', :style => "display: none;" %>
-	<%= f.text_field :mobile, :placeholder => "Mobile (numbers only)" %>
+	<%= f.phone_field :mobile, :placeholder => "Mobile (numbers only)" %>
 	<% if @user.errors[:mobile].any? %>
 	  <div class="error-explanation">
 		<p>Please enter a number using only numbers, such as: 4156785555.</p>
