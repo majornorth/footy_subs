@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to '/signup/success'
     else
+      flash.now[:error] = 'Could not complete sign up. Please try again.'
       render 'signup/new'
     end
   end
@@ -34,7 +35,11 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    redirect_to users_path
+    if current_user.id == 1
+      redirect_to events_path
+    else
+      redirect_to users_path
+    end
   end
 
   def show

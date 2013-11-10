@@ -21,7 +21,7 @@
 	<%= f.email_field :email, :placeholder => "Email", :autocorrect => "off", :autocapitalize => "off" %>
 	<% if @user.errors[:email].any? %>
 	  <div class="error-explanation">
-		<p>Please make sure you're email is correct.</p>
+		<p>Please make sure your email is correct.</p>
 	  </div>
 	<% end %>
 	<br />
@@ -30,7 +30,7 @@
 	<%= f.phone_field :mobile, :placeholder => "Mobile (numbers only)" %>
 	<% if @user.errors[:mobile].any? %>
 	  <div class="error-explanation">
-		<p>Please enter a number using only numbers, such as: 4156785555.</p>
+		<p>Please enter only numbers, such as: 4156785555.</p>
 	  </div>
 	<% end %>
 	<br />
