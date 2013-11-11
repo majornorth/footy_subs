@@ -40,13 +40,16 @@
 					<%= f.select :location, options_for_select([
 						["Balboa High School", "Balboa High School"],
 						["Beach Chalet", "Beach Chalet"],
+						["Boxer Stadium", "Boxer Stadium"],
 						["Crocker Amazon", "Crocker Amazon"],
 						["Franklin Square Playfield", "Franklin Square Playfield"],
+						["Garfield Playground", "Garfield Playground"],
+						["Galileo Academy Field", "Galileo Academy Field"],
 						["Kezar Stadium", "Kezar Stadium"],
 						["Kimbell Playground", "Kimbell Playground"],
 						["Pollicita Middle School", "Pollicita Middle School"],
 						["Polo Fields", "Polo Fields"],
-						["Silver Terrace Playground", "Silver Terrace Playground"],
+						["Silver Terrace Playground", "Silver Terrace Playground"]
 						], @event.location) %>
 					<br />
 				</div>
@@ -55,12 +58,12 @@
 				<div class="input-row">
 					<%= f.label :league, 'LEAGUE' %>
 					<%= f.select :league, options_for_select([
-						["iPlayFor", "iPlayFor"],
+						["Sports4Good", "Sports4Good"],
+						["NorCal Athletics", "NorCal Athletics"],
+						["I Play For", "I Play For"],
 						["Golden Gate Women's", "Golden Gate Women's"],
 						["SF Soccer Football", "SF Soccer Football"],
-						["Sports4Good", "Sports4Good"],
-						["SF Co-ed Rec Soccer", "SF Co-ed Rec Soccer"],
-						["NorCal Athletics", "NorCal Athletics"],
+						["SF Co-ed Rec Soccer", "SF Co-ed Rec Soccer"]
 						], @event.league) %>
 					<br />
 				</div>
