@@ -10,6 +10,21 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user]) 
     if @user.save
+      twilio_sid = ENV["TWILIO_SID"]
+      twilio_token = ENV["TWILIO_TOKEN"]
+      @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+
+      @users = User.order("created_at ASC")
+      new_user = @users.pop
+      new_user_mobile = new_user.mobile
+      new_user_name = new_user.firstName
+
+      @account = @twilio_client.account
+      @message = @account.sms.messages.create({
+        :from => '+14695027613',
+        :to => new_user_mobile,
+        :body => "Hey #{new_user_name}! Thanks for joining FootySubs. The app will be available soon and you'll be the first to know. Please tell your friends :)"
+      })
       redirect_to '/signup/success'
     else
       flash.now[:error] = 'Could not complete sign up. Please try again.'
