@@ -422,7 +422,8 @@ h1 {
 }
 
  .list li.expired span.count {
-  color: #CCC;
+  background: none;
+  color: #999;
  }
 
 /* If a list of links, make sure the child <a> takes up full list item tap area (want to avoid selecting child buttons though) */

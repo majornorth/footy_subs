@@ -13,9 +13,3 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-$(function(){
-  new DeleteConfirmation()
-  $("#comment-form").on("ajax:complete", function(){
-  	new DeleteConfirmation()
-  })
-})
