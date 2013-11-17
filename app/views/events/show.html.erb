@@ -97,7 +97,11 @@
 
 	<% if signed_in? && @comments.empty? != true %>
 		<div class ="comments">
-			<h2 style="margin: 30px 0 15px 0;"><%= @comments.count %> Comments</h2>
+			<% if @comments.count == 1 %>
+				<h2 style="margin: 30px 0 15px 0;">1 Comment</h2>
+			<% elsif @comments.count > 1 %>
+			  <h2 style="margin: 30px 0 15px 0;"><%= @comments.count %> Comment</h2>
+			<% end %>
 				<%= render :partial => 'comments/comment', :collection => @comments, :as => :comment %>
 				<%= render :partial => 'comments/form', :locals => { :comment => @new_comment } %>
 		</div>
@@ -108,7 +112,11 @@
 		</div>
 	<% elsif ! signed_in? && @comments.empty? != true %>
 		<div class ="comments">
-			<h2 style="margin: 30px 0 15px 0;"><%= @comments.count %> Comments</h2>
+			<% if @comments.count == 1 %>
+				<h2 style="margin: 30px 0 15px 0;">1 Comment</h2>
+			<% elsif @comments.count > 1 %>
+			  <h2 style="margin: 30px 0 15px 0;"><%= @comments.count %> Comment</h2>
+			<% end %>
 				<%= render :partial => 'comments/comment', :collection => @comments, :as => :comment %>
 		</div>
 	<% elsif ! signed_in? && @comments.empty? == true %>
