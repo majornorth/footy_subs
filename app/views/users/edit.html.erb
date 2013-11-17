@@ -40,7 +40,7 @@
 			<br />
 
 			<%= f.label :email, 'Email', :style => "display: none;" %>
-			<%= f.text_field :email, :placeholder => "Email" %>
+			<%= f.email_field :email, :placeholder => "Email" %>
 			<% if @user.errors[:email].any? %>
 			  <div class="error-explanation">
 				<p>Please make sure you're email is correct.</p>
@@ -49,7 +49,7 @@
 			<br />
 
 			<%= f.label :mobile, 'Mobile (Numbers only)', :style => "display: none;" %>
-			<%= f.text_field :mobile, :placeholder => "Mobile (numbers only)" %>
+			<%= f.phone_field :mobile, :placeholder => "Mobile (numbers only)" %>
 			<% if @user.errors[:mobile].any? %>
 			  <div class="error-explanation">
 				<p>Please enter a number using only numbers, such as: 4156785555.</p>
