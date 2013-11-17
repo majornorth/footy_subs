@@ -21,19 +21,27 @@
 		<ul class="list">
 
 		<% if signed_in? %>
-
-			<% @joined.each do |e| %>
-				<% if e.status == "open" && e.users.include?(current_user) || e.status == "full" && e.users.include?(current_user) %>
-					<li class="joined"><%= link_to(event_path(e.id)) do %><strong><%= e.start.strftime("%a, %b %e at %l:%M%P") %></strong>
-					<span class="count">Joined</span>
-					<p><%= e.location %></p><% end %>
-					</li>
-				<% end %>
-			<% end %>
-
 			<div class="lastOpen">
+				<% @organized.each do |e| %>
+					<% if e.status == "open" && e.organizer == current_user.id || e.status == "full" && e.organizer == current_user.id %>
+						<li class="organized"><%= link_to(event_path(e.id)) do %><strong><%= e.start.strftime("%a, %b %e at %l:%M%P") %></strong>
+						<span class="count">You have <%= e.users.count %> of <%= e.needed %></span>
+						<p><%= e.location %></p><% end %>
+					  </li>
+					<% end %>
+				<% end %>
+
+				<% @joined.each do |e| %>
+					<% if e.status == "open" && e.users.include?(current_user) || e.status == "full" && e.users.include?(current_user) %>
+						<li class="joined"><%= link_to(event_path(e.id)) do %><strong><%= e.start.strftime("%a, %b %e at %l:%M%P") %></strong>
+						<span class="count">Joined</span>
+						<p><%= e.location %></p><% end %>
+						</li>
+					<% end %>
+				<% end %>
+
 				<% @open.each do |e| %>
-					<% if e.users.exclude?(current_user) %>
+					<% if e.users.exclude?(current_user) && e.organizer != current_user.id %>
 						<li><%= link_to(event_path(e.id)) do %><strong><%= e.start.strftime("%a, %b %e at %l:%M%P") %></strong>
 						<span class="count"><%= e.users.count %> / <%= e.needed %></span>
 						<p><%= e.location %></p><% end %>

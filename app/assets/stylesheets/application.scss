@@ -406,6 +406,10 @@ h1 {
   background: #264c26;
 }
 
+.list li.organized .count {
+  background: #264c26;
+}
+
 .list.details li {
   position: relative;
   padding: 20px 10px 20px 10px; /* Given extra right padding to accomodate counts, chevrons or buttons */
