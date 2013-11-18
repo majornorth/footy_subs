@@ -41,7 +41,7 @@ class EventsController < ApplicationController
       @message = @account.sms.messages.create({
         :from => '+14695027613',
         :to => number,
-        :body => "A sub is needed for a soccer match happening #{starts.strftime("%A, %b %e at%l:%M%P")}. You can join here: footysubs.com/match/#{e_id}"
+        :body => "A sub is needed for a soccer match on #{starts.strftime("%A, %b %e at%l:%M%P")}. You can join here: footysubs.com/match/#{e_id}"
         })
     end
 
