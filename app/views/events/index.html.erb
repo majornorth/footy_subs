@@ -10,7 +10,7 @@
 		<img src="/assets/footy-subs.png" style="margin-top: 7px;" width="97px" height="35px">
 	</h1>
 	<% if signed_in? %>
-		<%= link_to image_tag("/assets/icon-post.png", :height => "13px", :style => "padding: 4px 0 0 0;"), new_event_path, class: "button", :style => "padding-bottom: 0;" %>
+		<%= link_to image_tag("/assets/icon-post.png", :height => "13px", :style => "padding: 5px 0 1px 0;"), new_event_path, class: "button", :style => "padding-bottom: 0;" %>
 	<% else %>
 		<%= link_to "Sign up", new_user_path, class: "button" %>
 	<% end %>
