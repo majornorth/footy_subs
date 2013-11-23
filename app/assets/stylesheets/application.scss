@@ -448,7 +448,9 @@ h1 {
 	border-bottom: 1px solid #AAA;
 }
 
-
+.organized span, .joined span, .open span, {
+  font-weight: bold;
+}
 
 /* Inset list
 -------------------------------------------------- */
