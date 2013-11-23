@@ -1,3 +1,5 @@
 Footy Subs
 
 A web app for finding substitute soccer players for matches in the Bay Area. Details: http://stewartmccoy.com/find-substitute-soccer-players/
+
+Beta app is accessible at: http://www.footysubs.com/events
