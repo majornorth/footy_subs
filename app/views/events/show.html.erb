@@ -121,7 +121,6 @@
 		</div>
 	<% elsif ! signed_in? && @comments.empty? == true %>
 		<h2 style="margin: 30px 0 15px 0;">0 comments</h2>
-		<p style="margin: 10px 0 15px 0;">Please <%= link_to "Sign in", signin_path %> or <%= link_to "Sign up", new_user_path %> to comment.</p>
 	<% end %>
 </div>
 
