@@ -372,10 +372,12 @@ h1 {
 
 /* Negative button  */
 .button-negative {
-  background-color: #e71e1e;
-  background-image: -webkit-linear-gradient(top, #e71e1e 0,#c71a1a 100%);
-  background-image: linear-gradient(to bottom, #e71e1e 0, #c71a1a 100%);
-  border: 1px solid #b51a1a;
+  color: #e71e1e;
+  text-shadow: none;
+  background-color: #fff;
+  /* background-image: -webkit-linear-gradient(top, #e71e1e 0,#c71a1a 100%);
+  background-image: linear-gradient(to bottom, #e71e1e 0, #c71a1a 100%);  */
+  border: none;
 }
 
 /* Active state for buttons with modifiers */

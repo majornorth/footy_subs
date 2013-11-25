@@ -1,5 +1,5 @@
 <header class="bar-title">
-	<%= link_to image_tag("/assets/icon-close.png", :height => "10px"), events_path, class: "button", :style => "padding-bottom: 0;" %>
+	<%= link_to image_tag("/assets/icon-close.png", :height => "20px"), events_path, class: "button", :style => "padding-top: 6px;" %>
 	<h1 class="title">Edit match</h1>
 </header>
 
@@ -99,7 +99,7 @@
 			<%= f.submit 'Update', class: 'button-main button-block' %>
 
 			<% if signed_in? && current_user.id == @event.organizer %>
-					<%= link_to "Delete match", event_path, :method => "DELETE", class: "button-negative button-block", style: "margin: 30px 0 15px 0;" %>
+					<%= link_to "Delete match", event_path, :method => "DELETE", class: "button-negative button-block", style: "margin: 15px 0 15px 0;" %>
 			<% end %>
 
 		<% end %>
