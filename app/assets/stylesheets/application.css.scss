@@ -8,9 +8,12 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
- *= require_tree .
  */
+
+//= require_self
+//= require_tree .
+//= require comments
+//= require signup
 
  /**
  * Most elements are credited to:
@@ -19,6 +22,12 @@
  * Licensed under The MIT License
  * http://opensource.org/licenses/MIT
  * ==================================
+ * 
+ * All other code and design:
+ * 
+ * stewartmccoy.com
+ * github.com/stewartmccoy
+ *
  */
 
  /* Hard reset
@@ -116,7 +125,6 @@ html {
 -------------------------------------------------- */
 
 body {
-  /* position: fixed; */
   top: 0;
   right: 0;
   bottom: 0;
@@ -153,7 +161,6 @@ h1 {
 
 /* Wrapper to be used around all content not in .bar-title and .bar-tab */
 .content {
-  /* position: fixed; */
   top: 0;
   right: 0;
   bottom: 0;
@@ -191,12 +198,10 @@ h1 {
   top: 44px;
 }
 
-
- /* General bar styles
+/* General bar styles
 -------------------------------------------------- */
 
 [class*="bar-"] {
-  /* position: fixed; */
   right: 0;
   left: 0;
   z-index: 10;
@@ -208,17 +213,12 @@ h1 {
  /* Title bar
 -------------------------------------------------- */
 
-/* Bar docked to top of viewport for showing page title and actions */
 .bar-title {
   top: 0;
   display: -webkit-box;
   display: box;
-  /* background-color: #1eb0e9; */
   background-color: #336633;
-  background-image: -webkit-linear-gradient(top, #336633 0, #264c26 100%);
-  background-image: linear-gradient(to bottom, #336633 0, #264c26 100%);
   border-bottom: 1px solid #112111;
-  box-shadow: inset 0 1px 1px -1px rgba(255, 255, 255, .8);
   -webkit-box-orient: horizontal;
           box-orient: horizontal;
 }
@@ -255,17 +255,22 @@ h1 {
 
 /* Generic style for all buttons in .bar-title */
 .bar-title [class*="button"] {
+  display: inline-block;
+  padding: 4px 12px;
+  margin: 0;
   position: relative;
   z-index: 10; /* Places buttons over full width title */
   font-size: 12px;
   line-height: 23px;
   color: #fff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
+  vertical-align: top;
+  cursor: pointer;
   background-color: #336633;
-  background-image: -webkit-linear-gradient(top, #336633 0, #1a321a 100%);
-  background-image: linear-gradient(to bottom, #336633 0, #1a321a 100%);
-  border: 1px solid #112111;
-  box-shadow: 0 1px rgba(255, 255, 255, .25);
+  background-image: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
   -webkit-box-flex: 0;
           box-flex: 0;
 }
@@ -292,223 +297,6 @@ h1 {
   background-color: #336633;
 }
 
-
-/* Directional buttons in title bars (thanks to @GregorAdams for solution - http://cssnerd.com/2011/11/30/the-best-pure-css3-ios-style-arrow-back-button/)
--------------------------------------------------- */
-
-/* Add relative positioning so :before content is positioned properly */
-.bar-title .button-prev,
-.bar-title .button-next {
-  position: relative;
-}
-
-/* Prev/next button base styles */
-
-.bar-title .button-prev {
-  margin-left: 7px; /* Push over to make room for :before content */
-  border-left: 0;
-  border-bottom-left-radius: 10px 15px;
-  border-top-left-radius: 10px 15px;
-}
-.bar-title .button-next {
-  margin-right: 7px; /* Push over to make room for :before content */
-  border-right: 0;
-  border-top-right-radius: 10px 15px;
-  border-bottom-right-radius: 10px 15px;
-}
-
-/* Pointed part of directional button */
-
-.bar-title .button-prev:before,
-.bar-title .button-next:before {
-  position: absolute;
-  top: 2px;
-  width: 27px;
-  height: 27px;
-  border-radius: 30px 100px 2px 40px / 2px 40px 30px 100px;
-  content: '';
-  box-shadow: inset 1px 0 #336633, inset 0 1px #336633;
-  -webkit-mask-image: -webkit-gradient(linear, left top, right bottom, from(#000), color-stop(.33, #000), color-stop(.5, transparent), to(transparent));
-                  mask-image: gradient(linear, left top, right bottom, from(#000), color-stop(.33, #000), color-stop(.5, transparent), to(transparent));
-}
-.bar-title .button-prev:before {
-  left: -5px;
-  background-image: -webkit-gradient(linear, left bottom, right top, from(#1A321A), to(#336633));
-  background-image: gradient(linear, left bottom, right top, from(#1A321A), to(#336633));
-  border-left: 1.5px solid rgba(255, 255, 255, .25);
-  -webkit-transform: rotate(-45deg) skew(-10deg, -10deg);
-          transform: rotate(-45deg) skew(-10deg, -10deg);
-}
-.bar-title .button-next:before {
-  right: -5px;
-  background-image: -webkit-gradient(linear, left bottom, right top, from(#336633), to(#1A321A));
-  background-image: gradient(linear, left bottom, right top, from(#336633), to(#1A321A));
-  border-top: 1.5px solid rgba(255, 255, 255, .25);
-  -webkit-transform: rotate(135deg) skew(-10deg, -10deg);
-          transform: rotate(135deg) skew(-10deg, -10deg);
-}
-
-/* Active states for the directional buttons */
-.bar-title .button-prev:active,
-.bar-title .button-next:active,
-.bar-title .button-prev:active:before,
-.bar-title .button-next:active:before {
-  color: #fff;
-  background-color: #336633;
-  background-image: none;
-}
-.bar-title .button-prev:active:before,
-.bar-title .button-next:active:before {
-  content: '';
-}
-.bar-title .button-prev:active:before {
-  box-shadow: inset 0 3px 3px rgba(0, 0, 0, .2);
-}
-.bar-title .button-next:active:before {
-  box-shadow: inset 0 -3px 3px rgba(0, 0, 0, .2);
-}
-
-
-
-/* Block buttons in any bar
--------------------------------------------------- */
-
-/* Add proper padding and replace buttons normal dropshadow with a shine from bar */
-[class*="bar"] .button-block {
-  padding: 7px 0;
-  margin-bottom: 0;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, .4), 0 1px rgba(255, 255, 255, .8);
-}
-
-/* Override standard padding changes for .button-blocks */
-[class*="bar"] .button-block:active {
-  padding: 7px 0;
-}
-
-
-/* Lists
--------------------------------------------------- */
-
-/* Remove usual bullet styles from list */
-.list {
-  list-style: none;
-  background-color: #fff;
-}
-
-/* Pad each list item and add dividers */
-.list li {
-  position: relative;
-  padding: 20px 60px 20px 10px; /* Given extra right padding to accomodate counts, chevrons or buttons */
-  border-bottom: 1px solid rgba(0, 0, 0, .1);
-}
-
-.list li.joined .count {
-  background: #264c26;
-}
-
-.list li.organized .count {
-  background: #264c26;
-}
-
-.list.details li {
-  position: relative;
-  padding: 20px 10px 20px 10px; /* Given extra right padding to accomodate counts, chevrons or buttons */
-  border-bottom: 1px solid rgba(0, 0, 0, .1);
-}
-
-.list li.expired {
-  background: #CCC;
-  color: #999; 
-}
-
-.list li.expired p {
-  color: #999; 
-}
-
- .list li.expired span.count {
-  background: none;
-  color: #999;
- }
-
-/* If a list of links, make sure the child <a> takes up full list item tap area (want to avoid selecting child buttons though) */
-.list li > a:not([class*="button"]) {
-  position: relative;
-  display: block;
-  padding: inherit;
-  margin: -20px -60px -20px -10px;
-  color: inherit;
-}
-
-.list li p { 
-  color: #666;
-  margin-top: 3px;
-}
-
-.lastOpen li:last-child {
-	border-bottom: 1px solid #AAA;
-}
-
-.organized span, .joined span, .open span, {
-  font-weight: bold;
-}
-
-/* Inset list
--------------------------------------------------- */
-
-.list.inset {
-  width: auto;
-  /* margin-right: 10px;
-  margin-left: 10px; */
-  border: 1px solid rgba(0, 0, 0, .1);
-  border-radius: 6px;
-  box-sizing: border-box;
-}
-
-/* Remove border from first/last standard list items to avoid double border at top/bottom of lists */
-.list.inset li:first-child {
-  border-top-width: 0;
-}
-.list.inset li:last-child {
-  border-bottom-width: 0;
-}
-
-.list.inset ul {
-  list-style: none;
-}
-
-.list.inset li span.match-detail {
-  color: #dddcda;
-  display: inline-block;
-  width: 100px;
-}
-
-.match-note {
-  margin: 15px 0 5px 0;
-  display: inline-block;
-}
-
-.match-note-parens {
-  display: inline; 
-  color: #999; 
-  padding-left: 10px;
-}
-
-
-/* Right-aligned subcontent in lists (chevrons, buttons, counts and toggles)
--------------------------------------------------- */
-.list [class*="button"],
-.list [class*="count"] {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-}
-
- /* Position chevrons/counts vertically centered on the right in list items */
-.list [class*="count"] {
-  margin-top: -10px; /* Half height of chevron */
-}
-
-
 /* General button styles
 -------------------------------------------------- */
 
@@ -532,24 +320,20 @@ h1 {
   vertical-align: top;
   cursor: pointer;
   background-color: #f8f8f8;
-  background-image: -webkit-linear-gradient(top, #f8f8f8 0, #d4d4d4 100%);
-  background-image: linear-gradient(to bottom, #f8f8f8 0, #d4d4d4 100%);
-  border: 1px solid rgba(0, 0, 0, .3);
+  /* background-image: -webkit-linear-gradient(top, #f8f8f8 0, #d4d4d4 100%);
+  background-image: linear-gradient(to bottom, #f8f8f8 0, #d4d4d4 100%); */
+  border: 1px solid rgba(0, 0, 0, .3); 
   border-radius: 3px;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, .4), 0 1px 2px rgba(0, 0, 0, .05);
+  /* box-shadow: inset 0 1px 1px rgba(255, 255, 255, .4), 0 1px 2px rgba(0, 0, 0, .05); */
 }
 
 /* Active */
 [class*="button"]:active {
-  padding-top: 5px;
-  padding-bottom: 3px;
   color: #333;
   background-color: #ccc;
   background-image: none;
-  box-shadow: inset 0 3px 3px rgba(0, 0, 0, .2);
+  opacity: 0.6;
 }
-
-
 
 /* Button modifiers
 -------------------------------------------------- */
@@ -624,7 +408,127 @@ h1 {
   padding: 12px 0;
 }
 
+/* Lists
+-------------------------------------------------- */
 
+/* Remove usual bullet styles from list */
+.list {
+  list-style: none;
+  background-color: #fff;
+}
+
+/* Pad each list item and add dividers */
+.list li {
+  position: relative;
+  padding: 20px 60px 20px 10px; /* Given extra right padding to accomodate counts, chevrons or buttons */
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+.list li.joined .count {
+  background: #264c26;
+}
+
+.list li.organized .count {
+  background: #264c26;
+}
+
+.list.details li {
+  position: relative;
+  padding: 20px 10px 20px 10px; /* Given extra right padding to accomodate counts, chevrons or buttons */
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+.list li.expired {
+  background: #CCC;
+  color: #999; 
+}
+
+.list li.expired p {
+  color: #999; 
+}
+
+ .list li.expired span.count {
+  background: none;
+  color: #999;
+ }
+
+/* If a list of links, make sure the child <a> takes up full list item tap area (want to avoid selecting child buttons though) */
+.list li > a:not([class*="button"]) {
+  position: relative;
+  display: block;
+  padding: inherit;
+  margin: -20px -60px -20px -10px;
+  color: inherit;
+}
+
+.list li p { 
+  color: #666;
+  margin-top: 3px;
+}
+
+.lastOpen li:last-child {
+  border-bottom: 1px solid #AAA;
+}
+
+.organized span, .joined span, .open span, {
+  font-weight: bold;
+}
+
+/* Inset list
+-------------------------------------------------- */
+
+.list.inset {
+  width: auto;
+  /* margin-right: 10px;
+  margin-left: 10px; */
+  border: 1px solid rgba(0, 0, 0, .1);
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+/* Remove border from first/last standard list items to avoid double border at top/bottom of lists */
+.list.inset li:first-child {
+  border-top-width: 0;
+}
+.list.inset li:last-child {
+  border-bottom-width: 0;
+}
+
+.list.inset ul {
+  list-style: none;
+}
+
+.list.inset li span.match-detail {
+  color: #dddcda;
+  display: inline-block;
+  width: 100px;
+}
+
+.match-note {
+  margin: 15px 0 5px 0;
+  display: inline-block;
+}
+
+.match-note-parens {
+  display: inline; 
+  color: #999; 
+  padding-left: 10px;
+}
+
+
+/* Right-aligned subcontent in lists (chevrons, buttons, counts and toggles)
+-------------------------------------------------- */
+.list [class*="button"],
+.list [class*="count"] {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+}
+
+ /* Position chevrons/counts vertically centered on the right in list items */
+.list [class*="count"] {
+  margin-top: -10px; /* Half height of chevron */
+}
 
 /* General count styles
 -------------------------------------------------- */
