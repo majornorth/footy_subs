@@ -3,7 +3,7 @@
 	<h1 class="title">
 		Match details
 	</h1>
-	<% if signed_in? && current_user.id == @event.organizer %>
+	<% if signed_in? && current_user.id == @event.organizer && @event.start > Time.now %>
 			<%= link_to "Edit", edit_event_path, class: "button", :style => "padding-top: 6px;" %>
 	<% end %>
 </header>
