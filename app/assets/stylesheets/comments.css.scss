@@ -32,3 +32,20 @@
 	position: absolute;
 	right: 20px;
 }
+
+.delete-confirmation.confirm-button {
+  color: #AAA;
+  font-size: 14px;
+  background-color: #fff;
+  background: none;
+  background-image: none;
+  border: none;
+  border-radius: 0;
+}
+
+.delete-confirmation.delete-button {
+  background-color: #f8f8f8;
+  background-image: -webkit-linear-gradient(top, #f8f8f8 0, #f8f8f8 100%);
+  background-image: linear-gradient(to bottom, #f8f8f8 0, #f8f8f8 100%);
+  border: 1px solid #CCC;
+}

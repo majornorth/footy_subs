@@ -1,6 +1,6 @@
 <div class="comment" id="comment-<%= comment.id %>">
   <% if signed_in? && comment.user_id == current_user.id %>
-    <%= button_to "delete", comment_path(comment), :method => :delete, :remote => true, :disable_with => "x", :class => 'delete-confirmation', :form_class => 'delete-comment' %>
+    <%= button_to "delete", comment_path(comment), :method => :delete, :remote => true, :disable_with => "X", :class => 'delete-confirmation', :form_class => 'delete-comment' %>
   <% end %>
   <h4>
     <%= comment.user.firstName %> <%= comment.user.lastName %><br />

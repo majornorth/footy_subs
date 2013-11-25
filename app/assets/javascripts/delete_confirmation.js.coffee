@@ -24,7 +24,7 @@ class window.DeleteConfirmation
  
   createConfirmationButton: (button) ->
     clone = button.clone()
-    clone.val 'x'
+    clone.val 'X'
     clone.addClass @confirmClass
     clone.click (event) =>
       event.stopPropagation()
