@@ -33,7 +33,7 @@
 			<% if @event.users.select { |u| u.id == current_user.id }.empty? == false %>
 				<%= form_for @event, :url => leave_path do |f| %>
 					<%= f.hidden_field :event_id, :value => @event.id %>
-					<%= f.submit 'Leave', class: 'button-block' %>
+					<%= f.submit 'Leave', class: 'button-leave button-block' %>
 				<% end %>
 			<% end %> 
 
