@@ -1,5 +1,3 @@
-// in-progress
-
 window.AmPmModifier = {
   convert24to12: function(hour) {
     if (hour == 0) return 12;
@@ -8,10 +6,11 @@ window.AmPmModifier = {
   },
 
   initialize: function(hourSelector, amPmSelect) {
-    this.hourSelector = $(hourSelector || '#event_start_5i');
+    this.hourSelector = $(hourSelector || '#event_start_4i');
     this.amPmSelect = $(amPmSelect || '#event_start_ampm');
-    removeAmPmFromHours();
-    setUpToggleEvent();
+    this.removeAmPmFromHours();
+    this.setUpToggleEvent();
+    this.adjustHourValues();
   },
 
   removeAmPmFromHours: function() {
@@ -20,7 +19,7 @@ window.AmPmModifier = {
     // Replace options with 12 hour versions
     var twelveHourOptions = "";
     for (var i = 0; i < 12; i++) {
-      twelveHourOptions = twelveHourOptions.concat('<option value="' + i + '" data-original="' + i + '">' + convert24to12(i) + '</option>');
+      twelveHourOptions = twelveHourOptions.concat('<option value="' + i + '" data-original="' + i + '">' + this.convert24to12(i) + '</option>');
     }
     this.hourSelector.html(twelveHourOptions);
 
@@ -29,18 +28,24 @@ window.AmPmModifier = {
     this.amPmSelect.val(Math.floor(selectedHour / 12)); // am: 1, pm: 1
   },
 
+  adjustHourValues: function() {
+    var amPm = $(this.amPmSelect);
+    var currentValue = amPm.val();
+    var modifier = 12 * parseInt(currentValue);
+    this.hourSelector.find('option').each(function() {
+      var option = $(this);
+      var originalVal = option.data('original');
+      option.val(modifier + originalVal);
+    });
+  },
+
   setUpToggleEvent: function() {
     var amPm = $(this.amPmSelect);
-    amPm.change(function() {
-      var currentValue = amPm.val();
-      var modifier = 12 * Integer.parseInt(currentValue);
-      this.hourSelector.find('option').each(function() {
-        var option = $(this);
-        var originalVal = option.data('original');
-        option.val(modifier + originalVal);
-      });
-    });
+    var $this = this;
+    amPm.change(function() { $this.adjustHourValues(); });
   }
-}
+};
 
-AmPmModifier.initialize()
+jQuery(function() {
+  AmPmModifier.initialize()
+});

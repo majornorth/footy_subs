@@ -25,6 +25,10 @@
 			<div class="input-row">
 				<%= f.label :start, 'STARTS' %>
 				<%= datetime_select("event", "start", :order => [:month, :day], :use_short_month => true, :ampm => true, :minute_step => 15, :datetime_separator => '') %>
+				<select id="event_start_ampm">
+					<option value="0">AM</option>
+					<option value="1">PM</option>
+				</select>
 				<br />
 			</div>
 

@@ -692,7 +692,7 @@ select {
 }
 
 .input-row select#event_start_4i {
-  width: 18%;
+  width: 9%;
   box-shadow: none;
 }
 
@@ -700,6 +700,11 @@ select {
   width: 12%;
   box-shadow: none;
 }
+
+.input-row select#event_start_ampm {
+  width: 12%;
+  box-shadow: none;
+} 
 
 .input-row input {
   padding: 5px 0 2px 10px;
