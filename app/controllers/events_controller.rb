@@ -19,7 +19,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(params[:event]) 
+    @event = Event.new(params[:event])
     @event.save
 
     e_id = @event.id

@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
 	  	raise @comment.errors.full_messages.inspect
 	    render :js => "alert('error saving comment');"
 	  end
+    Notification.send_comment @comment.commentable_id, current_user
 	end
 
 	def destroy
