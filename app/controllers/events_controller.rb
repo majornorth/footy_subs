@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   def index
     @events = Event.order("start DESC")
-    @organized = Event.where(:organizer => current_user, :status => "open").order("start ASC")
+    @organized = Event.where(:organizer_id => current_user, :status => "open").order("start ASC")
     @joined = Event.order("start ASC")
     @open = Event.where(:status => "open").order("start ASC")
     @full = Event.where(:status => "full").order("start ASC")

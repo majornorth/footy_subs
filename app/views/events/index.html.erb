@@ -23,7 +23,7 @@
 		<% if signed_in? %>
 			<div class="lastOpen">
 				<% @organized.each do |e| %>
-					<% if e.status == "open" && e.organizer == current_user.id || e.status == "full" && e.organizer == current_user.id %>
+					<% if e.status == "open" && e.organizer_id == current_user.id || e.status == "full" && e.organizer_id == current_user.id %>
 						<li class="organized"><%= link_to(event_path(e.id)) do %><span><%= e.start.strftime("%a, %b %e at %l:%M%P") %></span>
 						<span class="count">You have <%= e.users.count %> of <%= e.needed %></span>
 						<p><%= e.location %></p><% end %>
