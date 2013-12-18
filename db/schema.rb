@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131019212028) do
+ActiveRecord::Schema.define(:version => 20131218031532) do
 
   create_table "comments", :force => true do |t|
     t.integer  "commentable_id",   :default => 0
@@ -33,10 +33,10 @@ ActiveRecord::Schema.define(:version => 20131019212028) do
   create_table "events", :force => true do |t|
     t.datetime "start"
     t.text     "location"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
-    t.integer  "organizer"
-    t.integer  "needed",      :default => 1
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+    t.integer  "organizer_id"
+    t.integer  "needed",       :default => 1
     t.string   "league"
     t.string   "field_type"
     t.string   "skill_level"

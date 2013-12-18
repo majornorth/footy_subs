@@ -7,7 +7,7 @@
 	<div class="content-padded">
 		<%= form_for @event do |f| %>
 		<div class="input-group">
-			<%= f.hidden_field :organizer, :value => current_user.id %>
+			<%= f.hidden_field :organizer_id, :value => current_user.id %>
 			<%= f.hidden_field :status, :value => "open" %>
 			<div class="input-row">
 				<%= f.label :needed, 'NEEDED' %>
