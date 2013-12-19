@@ -21,7 +21,7 @@
 		<% end %>
 	</h1>
 
-		<% if signed_in? && current_user.id != @event.organizer && @event.start > Time.now %>
+		<% if signed_in? && current_user.id != @event.organizer_id && @event.start > Time.now %>
 
 			<% if @event.users.select { |u| u.id == current_user.id }.empty? == true && @event.status != "full" %>
 				<%= form_for @event, :url => join_path do |f| %>
