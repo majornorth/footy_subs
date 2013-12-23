@@ -20,6 +20,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(params[:event])
+    @event.validate_year(params)
     @event.save
 
     e_id = @event.id
