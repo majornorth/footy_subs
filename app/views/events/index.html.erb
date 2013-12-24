@@ -3,7 +3,7 @@
 		<%= link_to image_tag("/assets/icon-settings.png", :height => "25px"), "/users/#{current_user.id}/edit", class: "button", :style => "padding-bottom: 0;" %>
 	<% else %>
 		<%= link_to "Sign in", signin_path, class: "button" %>
-	<% end %> 
+	<% end %>
 
 	<h1 class="title">
 		<span style="display: none;">Footy Subs</span>
@@ -41,7 +41,7 @@
 				<% end %>
 
 				<% @open.each do |e| %>
-					<% if e.users.exclude?(current_user) && e.organizer != current_user.id %>
+					<% if e.users.exclude?(current_user) && e.organizer_id != current_user.id %>
 						<li class="open"><%= link_to(event_path(e.id)) do %><span><%= e.start.strftime("%a, %b %e at %l:%M%P") %></span>
 						<span class="count"><%= e.users.count %> / <%= e.needed %></span>
 						<p><%= e.location %></p><% end %>
@@ -70,7 +70,7 @@
 		<% end %>
 
 		<% if ! signed_in? %>
-			
+
 			<div class="lastOpen">
 				<% @open.each do |e| %>
 					<li class="open"><%= link_to(event_path(e.id)) do %><span><%= e.start.strftime("%a, %b %e at %l:%M%P") %></span>

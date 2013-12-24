@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user]) 
+    @user = User.new(params[:user])
     if @user.save
       twilio_sid = ENV["TWILIO_SID"]
       twilio_token = ENV["TWILIO_TOKEN"]
@@ -38,6 +38,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    binding.pry
     @user.update_attributes(params[:user])
     if @user.save
       flash.now[:message] = 'Your profile has been updated.'
