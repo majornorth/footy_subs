@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :firstName, :lastName, :mobile, :password
+  attr_accessible :email, :firstName, :lastName, :mobile, :password, :opt_out
   has_and_belongs_to_many :events
   has_secure_password
 
@@ -10,11 +10,13 @@ class User < ActiveRecord::Base
   validates :lastName, presence: true, length: { maximum: 30 }
   validates :mobile, presence: true, length: { maximum: 15 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, 
-  	format: { with: VALID_EMAIL_REGEX }, 
+  validates :email, presence: true,
+  	format: { with: VALID_EMAIL_REGEX },
   	uniqueness: { case_sensitive: false }
   validates :password, length: { :within => 6..40 }, :on => :create
   validates :password, length: { :within => 6..40 }, :allow_blank => true, :on => :update
+
+  scope :messageable, -> { where(opt_out: false) }
 
   private
 

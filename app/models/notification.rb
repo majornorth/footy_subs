@@ -10,7 +10,7 @@ class Notification
     twilio_token = ENV["TWILIO_TOKEN"]
     @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
 
-    match_subs = @event.users.all
+    match_subs = @event.users.messageable
     match_organizer = @event.organizer
     subscriber_numbers = []
     match_subs.each do |s|

@@ -66,8 +66,12 @@
 			<% end %>
 			<br />
 
+			<%= f.check_box(:opt_out) %>
+			<%= f.label(:opt_out, "Don't send me text messages") %>
+			<br />
+
 			<%= f.submit 'Update', class: "button-main button-block" %>
-			
+
 		<% end %>
 	</div>
 </div>
