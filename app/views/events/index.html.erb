@@ -51,7 +51,7 @@
 			</div>
 
 			<% @full.each do |e| %>
-				<% if e.users.exclude?(current_user) %>
+				<% if e.users.exclude?(current_user) && e.organizer_id != current_user.id  %>
 					<li class="expired"><%= link_to(event_path(e.id)) do %><%= e.start.strftime("%a, %b %e at %l:%M%P") %>
 					<span class="count">Full</span>
 					<p><%= e.location %></p><% end %>
