@@ -38,7 +38,6 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    binding.pry
     @user.update_attributes(params[:user])
     if @user.save
       flash.now[:message] = 'Your profile has been updated.'

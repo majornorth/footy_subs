@@ -12,6 +12,10 @@
 					<li><%= u.firstName %> <%= u.lastName %> <%= link_to "edit",edit_user_path(u.id) %> <%= link_to "delete", user_path(u.id), :method => "DELETE" %></li>
 					<li><%= u.email %></li>
 					<li><%= u.mobile %></li>
+					<%= form_for u do |f| %>
+						<%= f.check_box(:opt_out) %>
+						<%= f.label(:opt_out, "Don't send me text messages") %> <%= f.submit 'Update' %>
+					<% end %>
 					<br />
 				<% end %>
 			</ul>
