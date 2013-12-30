@@ -1,0 +1,14 @@
+!!! 5
+%html
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html'}/
+  %body
+    - if @user
+      %p
+        Hey #{@user.firstName.capitalize},
+    %p
+      Thanks for joining FootySubs. We'll let you know when we launch.
+    %p
+      Thanks,
+      Stewart
+    Twitter: #{link_to "@footysubs", "http://www.twitter.com/footysubs"}

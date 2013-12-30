@@ -2,8 +2,8 @@ class UserMailer < ActionMailer::Base
   SM = "mccoy.stewart@gmail.com"
   default from: SM
 
-  def password_reset(user)
+  def welcome_email(user)
     @user = user
-    mail(to: @user.email, subject: "Reset your password for FootySubs",  reply_to: JD, bcc: JD)
+    mail(to: @user.email, subject: "Welcome to FootySubs",  reply_to: SM, bcc: SM)
   end
 end
