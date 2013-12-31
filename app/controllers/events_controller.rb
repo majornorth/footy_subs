@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_filter :view_events?
+
   def index
     @events = Event.order("start DESC")
     @organized = Event.where(:organizer_id => current_user).order("start ASC")
@@ -181,4 +183,5 @@ class EventsController < ApplicationController
 
     redirect_to :back
   end
+
 end

@@ -1,20 +1,4 @@
-<header class="bar-title">
-	<% if signed_in? %>
-		<%= link_to image_tag("/assets/icon-settings.png", :height => "25px"), "/users/#{current_user.id}/edit", class: "button", :style => "padding-bottom: 0;" %>
-	<% else %>
-		<%= link_to "Sign in", signin_path, class: "button" %>
-	<% end %>
 
-	<h1 class="title">
-		<span style="display: none;">Footy Subs</span>
-		<img src="/assets/footy-subs.png" style="margin-top: 7px;" width="97px" height="35px">
-	</h1>
-	<% if signed_in? %>
-		<%= link_to image_tag("/assets/icon-post.png", :height => "22px", :style => "padding-top: 2px;"), new_event_path, class: "button", :style => "padding-bottom: 0;" %>
-	<% else %>
-		<%= link_to "Sign up", new_user_path, class: "button" %>
-	<% end %>
-</header>
 
 <div class="content">
 

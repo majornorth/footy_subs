@@ -12,7 +12,7 @@
 		    </div>
 		<% end %>
 
-		<%= form_for(:session, url: sessions_path) do |f| %>
+		<%= form_for(:user, url: new_user_session_path) do |f| %>
 		    <%= f.label :email, :style => "display: none;" %>
 		    <%= f.email_field :email, :placeholder => "Email", :autocorrect => "off", :autocapitalize => "off" %>
 		    <br />
@@ -21,7 +21,7 @@
 		    <%= f.password_field :password, :placeholder => "Password" %>
 		    <br />
 
-		    <%= f.submit 'Sign in', class: "button-main button-block" %> 
+		    <%= f.submit 'Sign in', class: "button-main button-block" %>
 		    <br />
 		<% end %>
 	</div>
