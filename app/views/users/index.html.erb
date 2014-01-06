@@ -1,4 +1,4 @@
-<% if signed_in? && current_user.id == User.find(1).id %>
+<% if signed_in? && current_user.admin? %>
 
 	<header class="bar-title">
 		<%= link_to "Cancel", events_path, class: "button" %>

@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   include SessionsHelper
 
+
   def after_sign_in_path_for(resource)
     events_path
   end
@@ -14,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def view_events?
+  def view_application?
     if current_user && current_user.admin
       return true
     elsif current_user

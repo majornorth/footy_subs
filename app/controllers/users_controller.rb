@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :view_application?
   def index
     @users = User.order("created_at DESC")
   end

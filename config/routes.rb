@@ -1,9 +1,9 @@
 Pickup::Application.routes.draw do
 
-  # devise_for :users
+  devise_for :users, :path => "", :path_names => { :sign_in => "signin", :sign_up => "signup"}
 
   # get '/signup', to: 'signup#new'
-  root :to => "signup#new"
+
   match '/signup/success', to: 'signup#success'
 
   resources :events, :users, :comments
@@ -13,9 +13,13 @@ Pickup::Application.routes.draw do
 
   devise_scope :user do
     get "/signin", :to => "devise/sessions#new"
+    get "/signup", :to => "devise/registrations#new"
   end
+
   match '/signout', to: 'sessions#destroy', via: :delete
-  match '/match/:id', to: 'events#show', via: :get
+  match '/match/:id', to: 'events#show', via: :get, as: "match"
+  match 'matches', to: 'events#index'
   match '/join', to: 'events#join'
   match '/leave', to: 'events#leave'
+  root :to => "signup#new"
 end

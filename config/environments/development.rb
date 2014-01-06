@@ -10,6 +10,8 @@ Pickup::Application.configure do
     authentication:       'plain',
     enable_starttls_auto: true  }
 
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
   config.cache_classes = false
 
   # Log error messages when you accidentally call methods on nil.

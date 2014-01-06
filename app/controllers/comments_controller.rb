@@ -1,4 +1,9 @@
 class CommentsController < ApplicationController
+  before_filter :view_application?
+
+  def index
+  end
+
 	def create
 	  @comment_hash = params[:comment]
 	  @obj = @comment_hash[:commentable_type].constantize.find(@comment_hash[:commentable_id])

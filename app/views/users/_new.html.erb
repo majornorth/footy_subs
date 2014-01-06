@@ -1,4 +1,4 @@
-<%= form_for @user do |f| %>
+<%= form_for @user, url: user_registration_path do |f| %>
 	<%= f.label :firstName, 'First Name', :style => "display: none;" %>
 	<%= f.text_field :firstName, :placeholder => "First name" %>
 	<% if @user.errors[:firstName].any? %>

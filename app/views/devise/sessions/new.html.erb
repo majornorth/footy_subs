@@ -1,0 +1,26 @@
+<div class="content">
+  <div class="content-padded">
+
+    <% if flash[:error] %>
+        <div class="signin-error">
+          <p><%= flash[:error] %></p>
+        </div>
+    <% end %>
+
+    <%= form_for(:user, url: new_user_session_path) do |f| %>
+        <%= f.label :email, :style => "display: none;" %>
+        <%= f.email_field :email, :placeholder => "Email", :autocorrect => "off", :autocapitalize => "off" %>
+        <br />
+
+        <%= f.label :password, :style => "display: none;" %>
+        <%= f.password_field :password, :placeholder => "Password" %>
+        <br />
+
+        <%= f.submit 'Sign in', class: "button-main button-block" %>
+        <br />
+
+        <%= render "devise/shared/links" %>
+    <% end %>
+  </div>
+</div>
+

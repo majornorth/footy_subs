@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_filter :view_events?
+  before_filter :view_application?
 
   def index
     @events = Event.order("start DESC")

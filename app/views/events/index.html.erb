@@ -8,7 +8,7 @@
 			<div class="lastOpen">
 				<% @organized.each do |e| %>
 					<% if e.status == "open" || e.status == "full" %>
-						<li class="organized"><%= link_to(event_path(e.id)) do %><span><%= e.start.strftime("%a, %b %e at %l:%M%P") %></span>
+						<li class="organized"><%= link_to(match_path(e.id)) do %><span><%= e.start.strftime("%a, %b %e at %l:%M%P") %></span>
 						<span class="count">You have <%= e.users.count %> of <%= e.needed %></span>
 						<p><%= e.location %></p><% end %>
 					  </li>
@@ -17,7 +17,7 @@
 
 				<% @joined.each do |e| %>
 					<% if e.status == "open" && e.users.include?(current_user) || e.status == "full" && e.users.include?(current_user) %>
-						<li class="joined"><%= link_to(event_path(e.id)) do %><span><%= e.start.strftime("%a, %b %e at %l:%M%P") %></span>
+						<li class="joined"><%= link_to(match_path(e.id)) do %><span><%= e.start.strftime("%a, %b %e at %l:%M%P") %></span>
 						<span class="count">Joined</span>
 						<p><%= e.location %></p><% end %>
 						</li>
@@ -26,7 +26,7 @@
 
 				<% @open.each do |e| %>
 					<% if e.users.exclude?(current_user) && e.organizer_id != current_user.id %>
-						<li class="open"><%= link_to(event_path(e.id)) do %><span><%= e.start.strftime("%a, %b %e at %l:%M%P") %></span>
+						<li class="open"><%= link_to(match_path(e.id)) do %><span><%= e.start.strftime("%a, %b %e at %l:%M%P") %></span>
 						<span class="count"><%= e.users.count %> / <%= e.needed %></span>
 						<p><%= e.location %></p><% end %>
 						</li>
@@ -36,7 +36,7 @@
 
 			<% @full.each do |e| %>
 				<% if e.users.exclude?(current_user) && e.organizer_id != current_user.id  %>
-					<li class="expired"><%= link_to(event_path(e.id)) do %><%= e.start.strftime("%a, %b %e at %l:%M%P") %>
+					<li class="expired"><%= link_to(match_path(e.id)) do %><%= e.start.strftime("%a, %b %e at %l:%M%P") %>
 					<span class="count">Full</span>
 					<p><%= e.location %></p><% end %>
 					</li>
@@ -45,7 +45,7 @@
 
 
 			<% @ended.limit(15).each do |e| %>
-					<li class="expired"><%= link_to(event_path(e.id)) do %><%= e.start.strftime("%a, %b %e at %l:%M%P") %>
+					<li class="expired"><%= link_to(match_path(e.id)) do %><%= e.start.strftime("%a, %b %e at %l:%M%P") %>
 					<span class="count">Ended</span>
 					<p><%= e.location %></p><% end %>
 					</li>
@@ -57,7 +57,7 @@
 
 			<div class="lastOpen">
 				<% @open.each do |e| %>
-					<li class="open"><%= link_to(event_path(e.id)) do %><span><%= e.start.strftime("%a, %b %e at %l:%M%P") %></span>
+					<li class="open"><%= link_to(match_path(e.id)) do %><span><%= e.start.strftime("%a, %b %e at %l:%M%P") %></span>
 					<span class="count"><%= e.users.count %> / <%= e.needed %></span>
 					<p><%= e.location %></p><% end %>
 					</li>
@@ -65,14 +65,14 @@
 			</div>
 
 			<% @full.each do |e| %>
-					<li class="expired"><%= link_to(event_path(e.id)) do %><span><%= e.start.strftime("%a, %b %e at %l:%M%P") %></span>
+					<li class="expired"><%= link_to(match_path(e.id)) do %><span><%= e.start.strftime("%a, %b %e at %l:%M%P") %></span>
 					<span class="count">Full</span>
 					<p><%= e.location %></p><% end %>
 					</li>
 			<% end %>
 
 			<% @ended.limit(15).each do |e| %>
-					<li class="expired"><%= link_to(event_path(e.id)) do %><%= e.start.strftime("%a, %b %e at %l:%M%P") %>
+					<li class="expired"><%= link_to(match_path(e.id)) do %><%= e.start.strftime("%a, %b %e at %l:%M%P") %>
 					<span class="count">Ended</span>
 					<p><%= e.location %></p><% end %>
 					</li>
