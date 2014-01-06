@@ -51,14 +51,14 @@
 			<% end %>
 			<br />
 
-			<%= f.label :password, 'Update Password', :style => "display: none;" %>
+<!-- 			<%= f.label :password, 'Update Password', :style => "display: none;" %>
 			<%= f.password_field :password, :placeholder => "Enter new password to change it" %>
 			<% if @user.errors[:password].any? %>
 			  <div class="error-explanation">
 				<p>Please choose a password longer than 6 characters.</p>
 			  </div>
 			<% end %>
-			<br />
+			<br /> -->
 			<div style="margin-top: 13px; margin-bottom: 23px;">
 				<%= f.check_box(:opt_out) %>
 				<%= f.label(:opt_out, "Don't send me text messages") %>

@@ -18,6 +18,8 @@ Pickup::Application.routes.draw do
 
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/match/:id', to: 'events#show', via: :get, as: "match"
+  match '/match/:id/edit', to: 'events#edit', via: :get, as: "edit_match"
+  match 'player/:id/edit', to: 'users#edit', via: :get, as: "edit_user"
   match 'matches', to: 'events#index'
   match '/join', to: 'events#join'
   match '/leave', to: 'events#leave'

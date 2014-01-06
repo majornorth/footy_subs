@@ -1,20 +1,28 @@
 %header.bar-title
-  - if current_user
-    = link_to "Sign out", destroy_user_session_path, method: "delete", class: "button", :style => "padding-top: 6px;"
-  /   - if request.path == events_path
-  /     = link_to image_tag("/assets/icon-settings.png", :height => "25px"), "/users/#{current_user.id}/edit", class: "button", :style => "padding-bottom: 0;"
-  /     %h1.title
-  /       %span{style: "display: none;"} Footy Subs
-  /       %img{height: "35px", src: "/assets/footy-subs.png", style: "margin-top: 7px;", width: "97px"}
-  /     = link_to image_tag("/assets/icon-post.png", :height => "22px", :style => "padding-top: 2px;"), new_event_path, class: "button", :style => "padding-bottom: 0;"
-  /   - elsif request.path == edit_user_path(current_user)
-  /     = link_to image_tag("/assets/icon-close.png", :height => "20px"), events_path, class: "button", :style => "padding-top: 6px;"
-  /     %h1.title Edit Profile
-  /     = link_to "Sign out", destroy_user_session_path, method: "delete", class: "button", :style => "padding-top: 6px;"
-  /   - elsif request.path == new_event_path
-  /     = link_to image_tag("/assets/icon-close.png", :height => "20px"), events_path, class: "button", :style => "padding-top: 6px;"
-  /     %h1.title Post match
-  / - else
-  /   %h1.title
-  /     %span{style: "display: none;"} Footy Subs
-  /     %img{height: "35px", src: "/assets/footy-subs.png", style: "margin-top: 7px;", width: "97px"}
+  - if user_signed_in?
+    - if request.path == matches_path
+      = link_to image_tag("/assets/icon-settings.png", :height => "25px"), "/player/#{current_user.id}/edit", class: "button", :style => "padding-bottom: 0;"
+      %h1.title
+        %span{style: "display: none;"} Footy Subs
+        %img{height: "35px", src: "/assets/footy-subs.png", style: "margin-top: 7px;", width: "97px"}
+      = link_to image_tag("/assets/icon-post.png", :height => "22px", :style => "padding-top: 2px;"), new_event_path, class: "button", :style => "padding-bottom: 0;"
+    - elsif request.path == match_path
+      = link_to image_tag("/assets/previous.png", :height => "22px", :style => "padding-top: 2px;"), matches_path, class: "button", :style => "padding-bottom: 0;"
+      %h1.title
+        Match details
+      - if signed_in? && current_user.id == @event.organizer_id && @event.start > Time.now
+        = link_to "Edit", edit_match_path, class: "button", :style => "padding-top: 6px;"
+    - elsif request.path == edit_match_path
+      = link_to image_tag("/assets/icon-close.png", :height => "20px"), :back, class: "button", :style => "padding-top: 6px;"
+      %h1.title Edit match
+    - elsif request.path == edit_user_path(current_user)
+      = link_to image_tag("/assets/icon-close.png", :height => "20px"), matches_path, class: "button", :style => "padding-top: 6px;"
+      %h1.title Edit Profile
+      = link_to "Sign out", destroy_user_session_path, method: "delete", class: "button", :style => "padding-top: 6px;"
+    - elsif request.path == new_event_path
+      = link_to image_tag("/assets/icon-close.png", :height => "20px"), events_path, class: "button", :style => "padding-top: 6px;"
+      %h1.title Post match
+  - else
+    %h1.title
+      %span{style: "display: none;"} Footy Subs
+      %img{height: "35px", src: "/assets/footy-subs.png", style: "margin-top: 7px;", width: "97px"}
