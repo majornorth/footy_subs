@@ -5,7 +5,7 @@
       %h1.title
         %span{style: "display: none;"} Footy Subs
         %img{height: "35px", src: "/assets/footy-subs.png", style: "margin-top: 7px;", width: "97px"}
-      = link_to image_tag("/assets/icon-post.png", :height => "22px", :style => "padding-top: 2px;"), new_event_path, class: "button", :style => "padding-bottom: 0;"
+      = link_to image_tag("/assets/icon-post.png", :height => "22px", :style => "padding-top: 2px;"), new_match_path, class: "button", :style => "padding-bottom: 0;"
     - elsif request.path == match_path
       = link_to image_tag("/assets/previous.png", :height => "22px", :style => "padding-top: 2px;"), matches_path, class: "button", :style => "padding-bottom: 0;"
       %h1.title
@@ -22,6 +22,16 @@
     - elsif request.path == new_event_path
       = link_to image_tag("/assets/icon-close.png", :height => "20px"), events_path, class: "button", :style => "padding-top: 6px;"
       %h1.title Post match
+  - elsif request.path == new_user_password_path
+    = link_to image_tag("/assets/previous.png", :height => "22px", :style => "padding-top: 2px;"), signin_path, class: "button", :style => "padding-bottom: 0;"
+    %h1.title
+      Reset password
+  - elsif request.path == signin_path
+    = link_to image_tag("/assets/icon-close.png", :height => "20px"), matches_path, class: "button", :style => "padding-top: 6px;"
+    %h1.title Sign in
+  - elsif request.path == signup_path
+    = link_to image_tag("/assets/icon-close.png", :height => "20px"), matches_path, class: "button", :style => "padding-top: 6px;"
+    %h1.title Sign up
   - else
     %h1.title
       %span{style: "display: none;"} Footy Subs
