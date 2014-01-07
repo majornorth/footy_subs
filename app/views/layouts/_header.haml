@@ -1,38 +1,39 @@
 %header.bar-title
   - if user_signed_in?
-    - if request.path == matches_path
-      = link_to image_tag("/assets/icon-settings.png", :height => "25px"), "/player/#{current_user.id}/edit", class: "button", :style => "padding-bottom: 0;"
+    - if ui_display? params, "events", "index"
+      = link_to image_tag("icon-settings.png", :height => "25px"), edit_user_path(current_user), class: "button", :style => "padding-bottom: 0;"
       %h1.title
         %span{style: "display: none;"} Footy Subs
-        %img{height: "35px", src: "/assets/footy-subs.png", style: "margin-top: 7px;", width: "97px"}
-      = link_to image_tag("/assets/icon-post.png", :height => "22px", :style => "padding-top: 2px;"), new_match_path, class: "button", :style => "padding-bottom: 0;"
-    - elsif request.path == match_path
-      = link_to image_tag("/assets/previous.png", :height => "22px", :style => "padding-top: 2px;"), matches_path, class: "button", :style => "padding-bottom: 0;"
+        = image_tag "footy-subs.png", style: "margin-top: 7px;", width: "97px", height: "35px"
+      = link_to image_tag("icon-post.png", :height => "22px", :style => "padding-top: 2px;"), new_match_path, class: "button", :style => "padding-bottom: 0;"
+    - elsif ui_display? params, "events", "show"
+      = link_to image_tag("previous.png", :height => "22px", :style => "padding-top: 2px;"), matches_path, class: "button", :style => "padding-bottom: 0;"
       %h1.title
         Match details
-      - if signed_in? && current_user.id == @event.organizer_id && @event.start > Time.now
+      - if active_event? @event, current_user
         = link_to "Edit", edit_match_path, class: "button", :style => "padding-top: 6px;"
-    - elsif request.path == edit_match_path
-      = link_to image_tag("/assets/icon-close.png", :height => "20px"), :back, class: "button", :style => "padding-top: 6px;"
+    - elsif ui_display? params, "events", "edit"
+      = link_to image_tag("icon-close.png", :height => "20px"), :back, class: "button", :style => "padding-top: 6px;"
       %h1.title Edit match
-    - elsif request.path == edit_user_path(current_user)
-      = link_to image_tag("/assets/icon-close.png", :height => "20px"), matches_path, class: "button", :style => "padding-top: 6px;"
+    - elsif ui_display? params, "users", "edit"
+      = link_to image_tag("icon-close.png", :height => "20px"), matches_path, class: "button", :style => "padding-top: 6px;"
       %h1.title Edit Profile
       = link_to "Sign out", destroy_user_session_path, method: "delete", class: "button", :style => "padding-top: 6px;"
-    - elsif request.path == new_event_path
-      = link_to image_tag("/assets/icon-close.png", :height => "20px"), events_path, class: "button", :style => "padding-top: 6px;"
+    - elsif ui_display? params, "events", "new"
+      = link_to image_tag("icon-close.png", :height => "20px"), events_path, class: "button", :style => "padding-top: 6px;"
       %h1.title Post match
-  - elsif request.path == new_user_password_path
-    = link_to image_tag("/assets/previous.png", :height => "22px", :style => "padding-top: 2px;"), signin_path, class: "button", :style => "padding-bottom: 0;"
-    %h1.title
-      Reset password
-  - elsif request.path == signin_path
-    = link_to image_tag("/assets/icon-close.png", :height => "20px"), matches_path, class: "button", :style => "padding-top: 6px;"
-    %h1.title Sign in
-  - elsif request.path == signup_path
-    = link_to image_tag("/assets/icon-close.png", :height => "20px"), matches_path, class: "button", :style => "padding-top: 6px;"
-    %h1.title Sign up
-  - else
+  - elsif
+    - if ui_display? params, "devise/passwords", "new"
+      = link_to image_tag("previous.png", :height => "22px", :style => "padding-top: 2px;"), signin_path, class: "button", :style => "padding-bottom: 0;"
+      %h1.title
+        Reset password
+    - elsif ui_display? params, "devise/sessions", "new"
+      = link_to image_tag("icon-close.png", :height => "20px"), matches_path, class: "button", :style => "padding-top: 6px;"
+      %h1.title Sign in
+    - elsif ui_display? params, "devise/registrations", "new"
+      = link_to image_tag("icon-close.png", :height => "20px"), matches_path, class: "button", :style => "padding-top: 6px;"
+      %h1.title Sign up
+  - if is_root? request
     %h1.title
       %span{style: "display: none;"} Footy Subs
-      %img{height: "35px", src: "/assets/footy-subs.png", style: "margin-top: 7px;", width: "97px"}
+      = image_tag "footy-subs.png", style: "margin-top: 7px;", width: "97px", height: "35px"

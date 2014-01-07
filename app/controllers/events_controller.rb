@@ -40,12 +40,16 @@ class EventsController < ApplicationController
     end
 
     subscriber_numbers.each do |number|
-      @account = @twilio_client.account
-      @message = @account.sms.messages.create({
-        :from => '+14695027613',
-        :to => number,
-        :body => "A sub is needed for a soccer match on #{starts.strftime("%A, %b %e at%l:%M%P")}. You can join here: footysubs.com/match/#{e_id}"
-        })
+      begin
+        @account = @twilio_client.account
+        @message = @account.sms.messages.create({
+          :from => '+14695027613',
+          :to => number,
+          :body => "A sub is needed for a soccer match on #{starts.strftime("%A, %b %e at%l:%M%P")}. You can join here: footysubs.com/match/#{e_id}"
+          })
+      rescue => e
+        p "there was a problem #{e.inspect}"
+      end
     end
 
     redirect_to events_path

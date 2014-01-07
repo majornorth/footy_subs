@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_filter :view_application?
+  before_filter :can_edit?, :only => [:edit, :update]
+
   def index
     @users = User.order("created_at DESC")
   end
@@ -63,5 +65,13 @@ class UsersController < ApplicationController
     @events = Event.order("start DESC")
     @open = Event.where(:status => "open").order("start ASC")
     @full = Event.where(:status => "full").order("start ASC")
+  end
+
+  private
+
+  def can_edit?
+    unless current_user.id == params[:id] || current_user.admin
+      redirect_to events_path
+    end
   end
 end
